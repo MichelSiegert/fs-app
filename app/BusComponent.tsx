@@ -54,13 +54,6 @@ export function BusComponent() {
                                             {depPlanned.toLocaleTimeString('de-DE', { hour: '2-digit', minute: '2-digit', hour12: false })}
                                         </span>
                                     </div>
-
-                                    <div className="flex items-center gap-2">
-                                        <span className="text-sm text-zinc-400 font-normal">An:</span>
-                                        <span className="text-black">
-                                            {arrPlanned.toLocaleTimeString('de-DE', { hour: '2-digit', minute: '2-digit', hour12: false })}
-                                        </span>
-                                    </div>
                                 </div>
 
                                 <div className="w-full text-center bg-[#00305D] font-bold text-white rounded-md text-2xl py-1.5">
