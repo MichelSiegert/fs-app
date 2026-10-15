@@ -4,6 +4,12 @@ import { useEffect, useState } from "react";
 //#85C3DF für Fähren
 // Spotify, Chess, Mensa, Minecraft
 
+function getColorByName(name: string) {
+    if (name.includes("60")) return "bg-[#E3242B]";
+    else if (name.includes("11")) return "bg-[#00305D]";
+    else return "bg-[#85C3DF]";
+}
+
 export function BusComponent() {
     const [data, setData] = useState<any>(null);
     const [loading, setLoading] = useState(true);
@@ -55,7 +61,7 @@ export function BusComponent() {
                                     </div>
                                 </div>
 
-                                <div className="w-full text-center bg-[#00305D] font-bold text-white rounded-md text-2xl py-1.5">
+                                <div className={"w-full text-center font-bold text-white rounded-md text-2xl py-1.5     " + getColorByName(journey.lineName)}>
                                     {journey.lineName}
                                 </div>
 
