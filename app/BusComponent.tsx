@@ -1,5 +1,4 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { Anchor, ArrowRight, Bus, Clock, Train } from "lucide-react";
 import { useEffect, useState } from "react";
 
 //#85C3DF für Fähren
@@ -8,16 +7,12 @@ import { useEffect, useState } from "react";
 export function BusComponent() {
     const [data, setData] = useState<any>(null);
     const [loading, setLoading] = useState(true);
-    const [, setLastUpdated] = useState<string>('');
 
     const fetchConnections = async () => {
         try {
             const res = await fetch('/api/connections');
             const result = await res.json();
             setData(result);
-            setLastUpdated(
-                new Date().toLocaleTimeString('de-DE', { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false })
-            );
         } catch (err) {
             console.error('Fetch error:', err);
         } finally {
@@ -28,14 +23,14 @@ export function BusComponent() {
     useEffect(() => {
         // eslint-disable-next-line react-hooks/set-state-in-effect
         fetchConnections();
-
         const interval = setInterval(() => {
             fetchConnections();
         }, 60000);
 
         return () => clearInterval(interval);
     }, []);
-    console.log(data)
+
+    console.log(data);
 
     return (
         <div className="space-y-6 w-full mx-auto">
@@ -45,36 +40,39 @@ export function BusComponent() {
                 )}
 
                 {data?.journeys?.map((journey: any, idx: number) => {
-
-                    const depPlanned: Date = new Date(journey.when);
-                    const delayMinutes: number = journey.delay;
-                    const depActual: Date = new Date(depPlanned.getTime()+ delayMinutes * 1000);
-                   const arrTime = new Date(); //TODO
-                    const arrPlanned = new Date(); //TODO 
+                    const depPlanned = new Date(journey.when);
+                    const arrPlanned = new Date(journey.arrivalTime);
 
                     return (
-                        <div key={idx} className="bg-white p-4 rounded-xl border border-zinc-200 shadow-xs space-y-2.5 text-xl">
-                            <div className="flex justify-between items-center">
-                                <div className="items-center gap-3 w-full">
-                                    <div className="flex w-full">
-                                        <span className="font-semibold text-black px-2 py-0.5 text-3xl">
+                        <div key={idx} className="bg-white p-4 rounded-xl border border-zinc-200 shadow-xs space-y-3 text-xl">
+                            <div className="flex flex-col gap-3 w-full">
+
+                                <div className="flex justify-between items-center text-2xl font-semibold">
+                                    <div className="flex items-center gap-2">
+                                        <span className="text-sm text-zinc-400 font-normal">Ab:</span>
+                                        <span className="text-black">
                                             {depPlanned.toLocaleTimeString('de-DE', { hour: '2-digit', minute: '2-digit', hour12: false })}
                                         </span>
                                     </div>
-                                    <div className=" text-green-600 px-2 py-0.5 rounded bg-gray text-2xl">
-                                        <span> 
-                                            {depActual.toLocaleTimeString('de-DE', { hour: '2-digit', minute: '2-digit', hour12: false })} 
+
+                                    <div className="flex items-center gap-2">
+                                        <span className="text-sm text-zinc-400 font-normal">An:</span>
+                                        <span className="text-black">
+                                            {arrPlanned.toLocaleTimeString('de-DE', { hour: '2-digit', minute: '2-digit', hour12: false })}
                                         </span>
                                     </div>
-                                    <div className="w-full text-center mt-2 bg-[#00305D] font-bold text-white rounded-sm text-3xl">
-                                        {journey.line.name ?? "some fucking bus I guess?"}
-                                    </div>
-                                    <div className=" text-2xl mt-1 flex w-full justify-between">
-                                        <div>  {journey.stop.name} </div>
-                                        <div> {journey.destination.name} </div>
-                                        
-                                    </div>
                                 </div>
+
+                                <div className="w-full text-center bg-[#00305D] font-bold text-white rounded-md text-2xl py-1.5">
+                                    {journey.lineName}
+                                </div>
+
+                                <div className="text-lg flex w-full justify-between items-center text-zinc-800">
+                                    <div className="font-medium">{journey.stopName}</div>
+
+                                    <div className="font-medium text-right">{journey.destinationName}</div>
+                                </div>
+
                             </div>
                         </div>
                     );
