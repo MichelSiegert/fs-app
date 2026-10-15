@@ -23,7 +23,7 @@ export async function GET() {
     const [journeyResult, ferryDepartures] = await Promise.all([
       client.journeys(originId, hbfId, { 
         departure: new Date(), 
-        results: 4, 
+        results: 3, 
         stopovers: false 
       }),
       ferryId

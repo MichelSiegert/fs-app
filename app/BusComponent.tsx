@@ -2,6 +2,11 @@
 import { Anchor, ArrowRight, Bus, Clock, Train } from "lucide-react";
 import { useEffect, useState } from "react";
 
+//farben
+/*
+#85C3DF für Fähren
+
+*/
 export function BusComponent() {
     const [data, setData] = useState<any>(null);
     const [loading, setLoading] = useState(true);
@@ -34,69 +39,49 @@ export function BusComponent() {
     }, []);
 
     return (
-        <div className="space-y-6 max-w-xl mx-auto">
-            <header className="bg-white p-5 rounded-xl border border-zinc-200 shadow-sm">
-                <h1 className="text-lg font-semibold flex items-center gap-2">
-                    Kiel Grenzstraße <ArrowRight className="w-4 h-4 text-zinc-400" /> Kiel Hbf
-                </h1>
-            </header>
-
+        <div className="space-y-6 w-full mx-auto">
             <div className="space-y-3">
                 {loading && !data && (
-                    <div className="text-center py-12 text-zinc-400 text-sm">Fahrpläne werden geladen...</div>
+                    <div className="text-center py-12 text-zinc-400 text-lg">Fahrpläne werden geladen...</div>
                 )}
 
                 {data?.journeys?.map((journey: any, idx: number) => {
-                    const leg = journey.legs[0];
+                    const leg: any = journey.legs[0];
 
-                    const depPlanned = new Date(leg.plannedDeparture);
-                    const depActual = new Date(leg.departure || leg.plannedDeparture);
-                    const delayMinutes = Math.round((depActual.getTime() - depPlanned.getTime()) / 60000);
+                    const depPlanned: Date = new Date(leg.plannedDeparture);
+                    const depActual: Date = new Date(leg.departure || leg.plannedDeparture);
+                    const delayMinutes: number = Math.round((depActual.getTime() - depPlanned.getTime()) / 60000);
 
                     const arrTime = new Date(journey.arrivalAtHbf || leg.arrival || leg.plannedArrival);
+                    const arrPlanned = new Date(leg.plannedArrival);
 
                     return (
-                        <div key={idx} className="bg-white p-4 rounded-xl border border-zinc-200 shadow-xs space-y-2.5">
+                        <div key={idx} className="bg-white p-4 rounded-xl border border-zinc-200 shadow-xs space-y-2.5 text-xl">
                             <div className="flex justify-between items-center">
-                                <div className="flex items-center gap-3">
-                                    <div className="p-2 bg-zinc-100 rounded-md text-zinc-700">
-                                        {leg.line?.mode === 'bus' ? <Bus className="w-4 h-4" /> : <Train className="w-4 h-4" />}
-                                    </div>
-                                    <div>
-                                        <span className="font-semibold text-zinc-900 text-xs bg-zinc-100 px-2 py-0.5 rounded border border-zinc-200">
-                                            {leg.line?.name || 'Linie'}
+                                <div className="items-center gap-3 w-full">
+                                    <div className="flex w-full">
+                                        <span className="font-semibold text-black px-2 py-0.5 text-3xl">
+                                            {depPlanned.toLocaleTimeString('de-DE', { hour: '2-digit', minute: '2-digit', hour12: false })}
+                                            - 
+                                            {arrPlanned.toLocaleTimeString('de-DE', { hour: '2-digit', minute: '2-digit', hour12: false   })}
                                         </span>
-                                        <div className="flex items-center gap-2 mt-1 text-xs text-zinc-600">
-                                            <Clock className="w-3.5 h-3.5 text-zinc-400" />
-                                            <span>
-                                                Abf: <strong className="text-zinc-900">{depPlanned.toLocaleTimeString('de-DE', { hour: '2-digit', minute: '2-digit', hour12: false })}</strong>
-                                            </span>
-                                            {delayMinutes > 0 ? (
-                                                <span className="text-[11px] bg-red-50 text-red-600 px-1.5 py-0.5 rounded font-medium border border-red-200">
-                                                    +{delayMinutes}m
-                                                </span>
-                                            ) : (
-                                                <span className="text-[11px] bg-zinc-100 text-zinc-600 px-1.5 py-0.5 rounded font-medium">
-                                                    Pünktlich
-                                                </span>
-                                            )}
-                                        </div>
+                                    </div>
+                                    <div className=" text-green-600 px-2 py-0.5 rounded bg-gray text-2xl">
+                                        <span> 
+                                            {depActual.toLocaleTimeString('de-DE', { hour: '2-digit', minute: '2-digit', hour12: false })} 
+                                            -
+                                            {arrTime.toLocaleTimeString('de-DE', { hour: '2-digit', minute: '2-digit', hour12: false })}
+                                        </span>
+                                    </div>
+                                    <div className="w-full text-center mt-2 bg-[#00305D] font-bold text-white rounded-sm text-3xl">
+                                        {leg.line?.name ?? "some fucking bus I guess?"}
+                                    </div>
+                                    <div className=" text-2xl mt-1 flex w-full justify-between">
+                                        <div>  Kiel Grenzstraße </div>
+                                        <div>  Kiel HBF </div>
+                                        
                                     </div>
                                 </div>
-
-                                <div className="text-right">
-                                    <span className="text-[11px] text-zinc-400 block">Ankunft Hbf</span>
-                                    <span className="text-sm font-semibold text-zinc-900">
-                                        {arrTime.toLocaleTimeString('de-DE', { hour: '2-digit', minute: '2-digit', hour12: false })}
-                                    </span>
-                                </div>
-                            </div>
-
-                            <div className="bg-zinc-50 px-3 py-2 rounded-lg border border-zinc-200/60 text-xs flex justify-between items-center">
-                                <span className="text-zinc-500 mr-5">Verbindungen:</span>
-                                <span className="font-semibold text-zinc-800 tracking-wide">
-                                    {journey.reachableBusesString}
-                                </span>
                             </div>
                         </div>
                     );
@@ -104,18 +89,18 @@ export function BusComponent() {
             </div>
 
             {data?.ferries && data.ferries.length > 0 && (
-                <div className="bg-white p-4 rounded-xl border border-zinc-200 shadow-xs space-y-3">
+                <div className="bg-white text-xl p-4 rounded-xl border border-zinc-200 shadow-xs space-y-3">
                     <div className="flex items-center gap-2 border-b border-zinc-100 pb-2">
-                        <Anchor className="w-4 h-4 text-zinc-600" />
-                        <h2 className="text-xs font-semibold text-zinc-700 uppercase tracking-wider">
+                        <Anchor className="w-8 h-8 text-zinc-600" />
+                        <h2 className="text-xl font-semibold text-zinc-700 uppercase tracking-wider">
                             Fähre ab Dietrichsdorf
                         </h2>
                     </div>
-                    <div className="divide-y divide-zinc-100">
+                    <div className="divide-y">
                         {data.ferries.map((f: any, fIdx: number) => (
-                            <div key={fIdx} className="py-2 first:pt-0 last:pb-0 flex justify-between items-center text-xs">
-                                <div className="flex items-center gap-2">
-                                    <span className="font-semibold text-zinc-900 bg-zinc-100 px-1.5 py-0.5 rounded border border-zinc-200">
+                            <div key={fIdx} className="py-2 bg-[#85C3DF] rounded p-4 first:pt-0 last:pb-0 flex justify-between items-center text-2xl">
+                                <div className="flex items-center text-black  gap-2">
+                                    <span className="font-semibold  px-1.5 py-0.5 rounded ">
                                         {f.line}
                                     </span>
                                     <span className="text-zinc-600">→ {f.direction}</span>
