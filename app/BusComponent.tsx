@@ -41,7 +41,6 @@ export function BusComponent() {
 
                 {data?.journeys?.map((journey: any, idx: number) => {
                     const depPlanned = new Date(journey.when);
-                    const arrPlanned = new Date(journey.arrivalTime);
 
                     return (
                         <div key={idx} className="bg-white p-4 rounded-xl border border-zinc-200 shadow-xs space-y-3 text-xl">

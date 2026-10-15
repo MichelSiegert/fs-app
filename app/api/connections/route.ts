@@ -6,17 +6,13 @@ const client = createClient('kiel-transport-app');
 
 export async function GET() {
   try {
-    const [fromStations, toStations] = await Promise.all([
-      client.locations('Kiel Grenzstraße', { results: 1 }),
-      client.locations('Kiel Hauptbahnhof', { results: 1 }),
-    ]);
+    const fromStations = await client.locations('Kiel Grenzstraße', { results: 1 });
 
     if (!fromStations.length) {
       return NextResponse.json({ error: 'Stations not found' }, { status: 404 });
     }
 
     const originId = fromStations[0].id;
-    const hbfId = toStations[0]?.id;
 
     const departures = await client.departures(originId, { 
       when: new Date(), 
