@@ -17,8 +17,6 @@ export async function GET() {
     }
 
     const originId = fromStations[0].id;
-    const hbfId = toStations[0].id;
-    const ferryId = ferryStations.length > 0 ? ferryStations[0].id : null;
 
     const journeyResult = await client.departures(originId, { 
         when: new Date(), 
