@@ -61,6 +61,7 @@ export async function GET() {
 
     const filteredJourneys = enrichedJourneys
       .filter((e: any) => !e.destinationName.includes("HAW"))
+      .filter((e: any)=> e.when)
       .slice(0, 4);
 
     return NextResponse.json({

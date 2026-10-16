@@ -65,10 +65,10 @@ export function BusComponent() {
                                     {journey.lineName}
                                 </div>
 
-                                <div className="text-lg flex w-full justify-between items-center text-zinc-800">
-                                    <div className="font-medium">{journey.stopName}</div>
+                                <div className="text-2xl flex w-full justify-between items-center text-zinc-800">
+                                    <div className="">{journey.stopName}</div>
 
-                                    <div className="font-medium text-right">{journey.destinationName}</div>
+                                    <div className="text-right">{journey.destinationName}</div>
                                 </div>
 
                             </div>
