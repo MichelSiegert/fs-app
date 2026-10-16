@@ -12,7 +12,7 @@ export default function Home() {
         <BusComponent />
       </section>
 
-      <section className="w-full md:w-1/2 p-6 flex flex-col items-center bg-white">
+      <section className="w-full md:w-1/2 p-6 flex flex-col bg-white min-h-full">
         <MscComponent />
       </section>
     </main>

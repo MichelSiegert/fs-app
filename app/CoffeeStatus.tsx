@@ -49,7 +49,7 @@ export default function CoffeeStatus() {
     : '';
 
   return (
-    <div className="w-full max-w-xl space-y-4">
+    <div className="w-full max-w-xl space-y-4 justify-center">
       <div className="w-full p-8 rounded-2xl border border-zinc-200 bg-white shadow-sm flex flex-col justify-center items-center text-center space-y-8">
         <h2 className="text-4xl sm:text-5xl font-bold text-zinc-900 tracking-tight">
           Gibt&apos;s Kaffee?

@@ -36,7 +36,6 @@ export function BusComponent() {
         return () => clearInterval(interval);
     }, []);
 
-    console.log(data);
 
     return (
         <div className="space-y-6 w-full mx-auto">
