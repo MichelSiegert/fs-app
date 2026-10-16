@@ -6,11 +6,11 @@ import CoffeeStatus from './CoffeeStatus';
 import { MensaComponent } from './MensaComponent';
 
 export default function MscComponent() {
-    const [showCoffee, setShowCoffee] = useState(true);
+    const [showCoffee, setShowCoffee] = useState(false);
 
     return (
         <div className="w-full">
-            <div className="w-full ">
+            <div className="w-full">
                 <AnimatePresence mode="wait">
                     {showCoffee ? (
                         <motion.div
@@ -19,7 +19,7 @@ export default function MscComponent() {
                             animate={{ opacity: 1, rotateY: 0 }}
                             exit={{ opacity: 0, rotateY: 90 }}
                             transition={{ duration: 0.4, ease: 'easeInOut' }}
-                            className="w-full flex justify-center items-center"
+                            className="w-full flex "
                         >
                             <CoffeeStatus />
                         </motion.div>
@@ -30,7 +30,7 @@ export default function MscComponent() {
                             animate={{ opacity: 1, rotateY: 0 }}
                             exit={{ opacity: 0, rotateY: 90 }}
                             transition={{ duration: 0.4, ease: 'easeInOut' }}
-                            className=" w-full flex justify-center items-center"
+                            className=" w-full flex"
                         >
                             <MensaComponent />
                         </motion.div>
