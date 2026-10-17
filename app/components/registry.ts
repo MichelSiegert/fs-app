@@ -24,15 +24,10 @@ const isMensaVisible = (now: Date) => {
 
 export const DASHBOARD_COMPONENTS: DashboardComponentConfig[] = [
     {
-        id: 'minecraft',
-        name: 'Minecraft Status',
-        component: MinecraftComponent,
-    },
-    {
         id: 'coffee',
         name: 'Coffee Status',
         component: CoffeeComponent,
-    },    
+    },
     {
         id: 'mensa',
         name: 'Mensa Menu',
@@ -44,5 +39,10 @@ export const DASHBOARD_COMPONENTS: DashboardComponentConfig[] = [
         id: 'bus',
         name: 'Bus Schedule',
         component: BusComponent,
+    },
+    {
+        id: 'minecraft',
+        name: 'Minecraft Status',
+        component: MinecraftComponent,
     }
 ];
