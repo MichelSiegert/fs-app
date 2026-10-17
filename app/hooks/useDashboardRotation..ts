@@ -4,19 +4,23 @@ import { useState, useEffect, useMemo } from 'react';
 import { DASHBOARD_COMPONENTS } from '../components/registry';
 
 export function useDashboardRotation(rotationIntervalMs = 45000) {
-  const [now, setNow] = useState<Date>(() => new Date());
+  const [now, setNow] = useState<Date | null>(null);
   const [rotationIndex, setRotationIndex] = useState(0);
 
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    setNow(new Date());
     const timer = setInterval(() => setNow(new Date()), 60000);
     return () => clearInterval(timer);
   }, []);
 
   const visibleComponents = useMemo(() => {
+    if (!now) return DASHBOARD_COMPONENTS;
     return DASHBOARD_COMPONENTS.filter((item) => (item.isVisible ? item.isVisible(now) : true));
   }, [now]);
 
   const priorityComponent = useMemo(() => {
+    if (!now) return undefined;
     return visibleComponents.find((item) => item.isScheduled?.(now));
   }, [visibleComponents, now]);
 
