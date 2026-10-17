@@ -1,16 +1,10 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { Coffee as CoffeeIcon, Info, CreditCard } from 'lucide-react';
+import { Coffee as CoffeeIcon } from 'lucide-react';
+import { CoffeeData } from '../types/coffee';
 
-interface CoffeeData {
-  state: string;
-  cups: number;
-  temperature: string;
-  mtime: string;
-}
-
-export default function CoffeeStatus() {
+export default function CoffeeComponent() {
   const [status, setStatus] = useState<CoffeeData>({
     state: 'no',
     cups: 0,
@@ -49,7 +43,7 @@ export default function CoffeeStatus() {
     : '';
 
   return (
-    <div className="w-full max-w-xl space-y-4 justify-center">
+    <div className="w-full max-w-xl space-y-4 justify-center content-center" style={{ height: "stretch" }}>
       <div className="w-full p-8 rounded-2xl border border-zinc-200 bg-white shadow-sm flex flex-col justify-center items-center text-center space-y-8">
         <h2 className="text-4xl sm:text-5xl font-bold text-zinc-900 tracking-tight">
           Gibt&apos;s Kaffee?

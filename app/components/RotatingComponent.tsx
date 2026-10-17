@@ -3,10 +3,10 @@
 
 import { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import CoffeeStatus from './CoffeeStatus';
+import CoffeeComponent from './CoffeeComponent';
 import { MensaComponent } from './MensaComponent';
 
-export default function MscComponent() {
+export default function RotatingComponent() {
     const [showCoffee, setShowCoffee] = useState(true);
 
     useEffect(() => {
@@ -52,7 +52,7 @@ export default function MscComponent() {
                             transition={{ duration: 0.4, ease: 'easeInOut' }}
                             className="w-full flex justify-center "
                         >
-                            <CoffeeStatus />
+                            <CoffeeComponent />
                         </motion.div>
                     ) : (
                         <motion.div

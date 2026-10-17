@@ -2,7 +2,7 @@
 import { useEffect, useState } from "react";
 
 //#85C3DF für Fähren
-// Spotify, Chess, Mensa, Minecraft
+// Spotify, Chess
 
 function getColorByName(name: string) {
     if (name.includes("60")) return "bg-[#E3242B]";
