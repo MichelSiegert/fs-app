@@ -3,6 +3,7 @@ import CoffeeComponent from './CoffeeComponent';
 import { MensaComponent } from './MensaComponent';
 import { BusComponent } from './BusComponent';
 import MinecraftComponent from './MinecraftComponent';
+import { AltklausurenComponent } from './AltklausurenComponent';
 
 export interface DashboardComponentConfig {
     id: string;
@@ -23,6 +24,7 @@ const isMensaVisible = (now: Date) => {
 };
 
 export const DASHBOARD_COMPONENTS: DashboardComponentConfig[] = [
+
     {
         id: 'coffee',
         name: 'Coffee Status',
@@ -44,5 +46,10 @@ export const DASHBOARD_COMPONENTS: DashboardComponentConfig[] = [
         id: 'minecraft',
         name: 'Minecraft Status',
         component: MinecraftComponent,
+    },
+    {
+        id: 'klausuren',
+        name: 'Klausuren status',
+        component: AltklausurenComponent,
     }
 ];

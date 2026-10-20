@@ -81,8 +81,8 @@ export default function CoffeeComponent() {
       <div className="p-4 rounded-xl border border-zinc-200/80 bg-zinc-50/70 text-zinc-600 space-y-2 text-2xl">
         <div className="flex items-center gap-2.5">
           <span className='text-zinc-800'>
-            <div ><span className='font-semibold'> Kaffee</span> ist KOSTENLOS.</div>
-            <div ><span className='font-semibold'> Softdrinks</span> kosten 1,00 €.
+            <div ><span className='font-semibold text-2xl'> Kaffee</span> ist KOSTENLOS.</div>
+            <div ><span className='font-semibold text-2xl'> Softdrinks</span> kosten 1,00 €.
               <div className='text-xl'> 10er Karten kosten 10€. </div>
             </div>
           </span>

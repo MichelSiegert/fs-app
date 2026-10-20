@@ -79,7 +79,7 @@ export default function MinecraftComponent() {
                         </div>
                     )}
 
-                    <p className="text-xl pt-2">
+                    <p className="text-3xl pt-2">
                         IP: {status.ip}{status.port && status.port !== 25565 ? `:${status.port}` : ''}
                     </p>
                 </div>
@@ -88,7 +88,7 @@ export default function MinecraftComponent() {
             <div className="p-4 rounded-xl border border-zinc-200/80 bg-zinc-50/70 text-zinc-600 space-y-2 text-2xl">
                 <div className="flex items-center gap-2.5">
                     <span className="text-zinc-800">
-                        <div><span className="font-semibold">Version:</span> Java{status.version}</div>
+                        <div><span className="font-semibold">Version:</span> Java {status.version}</div>
                         <div>Server ist im IOT-Nat (fürs erste, Ich arbeite dran das ins eduroam zu bringen!) </div>
                     </span>
                 </div>

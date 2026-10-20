@@ -4,7 +4,7 @@ import { AnimatedCard } from "./components/AnimatedCard";
 import { useDashboardRotation } from "./hooks/useDashboardRotation.";
 
 export default function Home() {
-  const ROTATION_INTERVAL = 45000;
+  const ROTATION_INTERVAL = 30000;
   const { priorityItem, rotatingItem } = useDashboardRotation(ROTATION_INTERVAL);
 
   const PriorityComp = priorityItem.component;
