@@ -8,6 +8,7 @@ export default function MinecraftComponent() {
     const [status, setStatus] = useState<MinecraftData>({
         online: false,
         ip: 'localhost',
+        version: "26.3"
     });
     const [loading, setLoading] = useState(true);
 
@@ -23,6 +24,7 @@ export default function MinecraftComponent() {
                     ip: data.ip || serverAddress,
                     port: data.port,
                     players: data.players,
+                    version: "26.3"
                 });
             } catch (err) {
                 console.error('Failed to fetch Minecraft status', err);
@@ -86,7 +88,7 @@ export default function MinecraftComponent() {
             <div className="p-4 rounded-xl border border-zinc-200/80 bg-zinc-50/70 text-zinc-600 space-y-2 text-2xl">
                 <div className="flex items-center gap-2.5">
                     <span className="text-zinc-800">
-                        <div><span className="font-semibold">Version:</span> Java 26.3</div>
+                        <div><span className="font-semibold">Version:</span> Java{status.version}</div>
                         <div>Server ist im IOT-Nat (fürs erste, Ich arbeite dran das ins eduroam zu bringen!) </div>
                     </span>
                 </div>

@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
-import os from 'os';
-import net from 'net';
+import { status } from 'minecraft-server-util';
+import os from "os"
 
 function getLocalIP() {
     const interfaces = os.networkInterfaces();
@@ -14,38 +14,32 @@ function getLocalIP() {
     return 'localhost';
 }
 
-async function checkPort(ip: string, port: number): Promise<boolean> {
-    return new Promise((resolve) => {
-        const socket = new net.Socket();
-        socket.setTimeout(2000);
-
-        socket.on('connect', () => {
-            socket.destroy();
-            resolve(true);
-        });
-
-        socket.on('timeout', () => {
-            socket.destroy();
-            resolve(false);
-        });
-
-        socket.on('error', () => {
-            socket.destroy();
-            resolve(false);
-        });
-
-        socket.connect(port, ip);
-    });
-}
-
 export async function GET() {
-    const localIP = getLocalIP();
-    const port = 25565; 
-    const online = await checkPort(localIP, port);
+    const host = '127.0.0.1';
+    const port = 25565;
+
+    let online = false;
+    let players = { online: 0, max: 0 };
+    let version = null;
+
+    try {
+        const response = await status(host, port, { timeout: 2000 });
+
+        online = true;
+        players = {
+            online: response.players.online,
+            max: response.players.max,
+        };
+        version = response.version.name;
+    } catch (error) {
+        console.error('Failed to connect to local Minecraft server:', error);
+    }
 
     return NextResponse.json({
         online,
-        ip: localIP,
+        ip: getLocalIP(),
         port,
+        players,
+        version,
     });
 }
