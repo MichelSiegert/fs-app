@@ -2,31 +2,37 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { Trophy, ExternalLink, RefreshCw, AlertCircle } from 'lucide-react';
+import { Trophy, RefreshCw, AlertCircle } from 'lucide-react';
 
-interface ChessPuzzleData {
-    Puzzle: number;
-    Link: string;
-    Image: string;
-    Text: string;
-    Players: string;
-    Site: string;
-    ShortHeader: string;
+interface LichessPuzzleData {
+    game: {
+        id: string;
+        perf: { name: string };
+        players: Array<{ name: string; color: string }>;
+    };
+    puzzle: {
+        id: string;
+        rating: number;
+        plays: number;
+        solution: string[];
+        themes: string[];
+        initialPly: number;
+    };
 }
 
 export function DailyChessPuzzleComponent() {
-    const [puzzle, setPuzzle] = useState<ChessPuzzleData | null>(null);
+    const [puzzleData, setPuzzleData] = useState<LichessPuzzleData | null>(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(false);
 
     useEffect(() => {
-        fetch('https://chesspuzzle.net/Daily/Api')
+        fetch('https://lichess.org/api/puzzle/daily')
             .then((res) => {
-                if (!res.ok) throw new Error('Failed to fetch');
+                if (!res.ok) throw new Error('Failed to fetch from Lichess');
                 return res.json();
             })
             .then((data) => {
-                setPuzzle(data);
+                setPuzzleData(data);
                 setLoading(false);
             })
             .catch((err) => {
@@ -36,56 +42,56 @@ export function DailyChessPuzzleComponent() {
             });
     }, []);
 
+    // Lichess static board thumbnail generator
+    const boardImageUrl = puzzleData
+        ? `https://lichess1.org/training/export/gif/thumbnail/${puzzleData.puzzle.id}.gif`
+        : '';
+
+    const playerWhite = puzzleData?.game?.players?.[0]?.name || 'Weiss';
+    const playerBlack = puzzleData?.game?.players?.[1]?.name || 'Schwarz';
+
     return (
-        <div className="w-full max-w-xl space-y-4 justify-center content-center" style={{ height: "stretch" }}>
-            <div className="w-full p-8 rounded-2xl border border-zinc-200 bg-white shadow-sm flex flex-col justify-center items-center text-center space-y-6">
-                <div className="space-y-2">
-                    <h2 className="text-3xl sm:text-4xl font-bold text-zinc-900 tracking-tight">
-                        Schach-Puzzle des Tages
-                    </h2>
-                </div>
+        <div className="w-full max-w-3xl space-y-6 justify-center content-center mx-auto" style={{ height: "stretch" }}>
+            <div className="w-full p-10 sm:p-12 rounded-3xl border border-zinc-200 bg-white shadow-md flex flex-col justify-center items-center text-center space-y-8">
 
                 {loading && (
-                    <div className="w-full p-8 flex items-center justify-center text-zinc-400 gap-2">
-                        <RefreshCw className="w-6 h-6 animate-spin text-amber-600" />
-                        <span className="text-xl">Lade Puzzle...</span>
+                    <div className="w-full p-16 flex flex-col items-center justify-center text-zinc-400 gap-4">
+                        <RefreshCw className="w-10 h-10 animate-spin text-amber-600" />
+                        <span className="text-2xl font-medium">Lade Puzzle...</span>
                     </div>
                 )}
 
                 {error && (
-                    <div className="w-full p-4 rounded-xl bg-red-50 border border-red-200 text-red-800 flex items-center justify-center gap-3">
-                        <AlertCircle className="w-6 h-6 text-red-600 shrink-0" />
-                        <span className="text-lg font-medium">Puzzle konnte nicht geladen werden.</span>
+                    <div className="w-full p-6 rounded-2xl bg-red-50 border border-red-200 text-red-800 flex items-center justify-center gap-4">
+                        <AlertCircle className="w-8 h-8 text-red-600 shrink-0" />
+                        <span className="text-xl font-medium">Puzzle konnte nicht geladen werden.</span>
                     </div>
                 )}
 
-                {!loading && !error && puzzle && (
+                {!loading && !error && puzzleData && (
                     <>
-                        <div className="w-full p-4 rounded-xl bg-amber-50/80 border border-amber-200/80 text-amber-900 flex flex-col items-center justify-center gap-1">
-                            <span className="font-bold text-2xl sm:text-3xl">
-                                {puzzle.Text}
+                        <div className="w-full rounded-2xl bg-amber-50/80 border border-amber-200/80 text-amber-900 flex flex-col items-center justify-center gap-2">
+                            <span className="font-bold text-xl sm:text-4xl">
+                                Rating: {puzzleData.puzzle.rating}
                             </span>
-                            <span className="text-sm font-medium text-amber-700/80">
-                                {puzzle.ShortHeader}
-                            </span>
+                            {puzzleData.puzzle.themes.length > 0 && (
+                                <span className="text-base sm:text-lg font-medium text-amber-700/80 capitalize">
+                                    {puzzleData.puzzle.themes.slice(0, 3).join(' • ')}
+                                </span>
+                            )}
                         </div>
 
-                        <div className="w-full bg-zinc-50 p-3 rounded-xl border border-zinc-200/80 flex flex-col items-center justify-center space-y-3">
-                            <a
-                                href={puzzle.Link}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="group relative block overflow-hidden rounded-lg border border-zinc-200 shadow-sm transition-transform hover:scale-[1.01]"
-                            >
-
+                        <div className="w-full bg-zinc-50 p-6 sm:p-8 rounded-2xl border border-zinc-200/80 flex flex-col items-center justify-center space-y-4">
+                            <div className="overflow-hidden rounded-xl border border-zinc-200 shadow-md pointer-events-none select-none w-full max-w-[560px]">
                                 <img
-                                    src={puzzle.Image}
-                                    alt={`Chess Puzzle ${puzzle.Puzzle}`}
-                                    className="w-full max-w-[320px] h-auto object-contain mx-auto"
+                                    src={boardImageUrl}
+                                    alt={`Lichess Puzzle ${puzzleData.puzzle.id}`}
+                                    className="w-full h-auto object-contain mx-auto rounded-lg"
                                 />
-                            </a>
-                            <p className="text-sm text-zinc-500 font-medium">
-                                {puzzle.Players}
+                            </div>
+
+                            <p className="text-base sm:text-lg text-zinc-600 font-medium select-none pt-2">
+                                {playerWhite} vs. {playerBlack}
                             </p>
                         </div>
                     </>
