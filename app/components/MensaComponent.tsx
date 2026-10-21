@@ -37,7 +37,7 @@ export function MensaComponent() {
                 </div>
                 <p className="text-2xl text-emerald-900 leading-relaxed">
                     Von <span className="font-semibold">14:15 bis 14:30 Uhr</span> gibt es in der Mensa Reste-Teller.
-                    Ich relativ cheap und es wird weniger wegeworfen.
+                    Ist relativ cheap und es wird weniger wegeworfen.
                 </p>
             </div>
         </div>
