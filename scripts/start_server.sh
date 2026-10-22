@@ -1,10 +1,7 @@
 #!/bin/bash
 cd /home/fsie/fs-app/ || exit 1
 
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
-
-nvm use default || nvm use node
+export PATH="/home/fsie/.nvm/versions/node/v26.12.0/bin:$PATH"
 
 git fetch && 
 git pull && 
