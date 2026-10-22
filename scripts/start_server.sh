@@ -8,6 +8,6 @@ git pull &&
 npm i && 
 npm run build && 
 npm start & 
-sleep 15
+sleep 30
 
 xdg-open http://localhost:3000
