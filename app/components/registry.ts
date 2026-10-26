@@ -2,9 +2,6 @@ import React from 'react';
 import CoffeeComponent from './CoffeeComponent';
 import { MensaComponent } from './MensaComponent';
 import { BusComponent } from './BusComponent';
-import MinecraftComponent from './MinecraftComponent';
-import { AltklausurenComponent } from './AltklausurenComponent';
-import { DailyChessPuzzleComponent } from './ChessComponent';
 
 export interface DashboardComponentConfig {
     id: string;
@@ -25,11 +22,10 @@ const isMensaVisible = (now: Date) => {
 };
 
 export const DASHBOARD_COMPONENTS: DashboardComponentConfig[] = [
-    
     {
-        id: 'chess',
-        name: 'Chess Component',
-        component: DailyChessPuzzleComponent,
+        id: 'recreational',
+        name: 'Recreational',
+        component: CoffeeComponent, // could be any I know this is horrible code but it works.
     },
     {
         id: 'coffee',
@@ -48,14 +44,4 @@ export const DASHBOARD_COMPONENTS: DashboardComponentConfig[] = [
         name: 'Bus Schedule',
         component: BusComponent,
     },
-    {
-        id: 'minecraft',
-        name: 'Minecraft Status',
-        component: MinecraftComponent,
-    },
-    {
-        id: 'klausuren',
-        name: 'Klausuren status',
-        component: AltklausurenComponent,
-    }
 ];

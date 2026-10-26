@@ -4,8 +4,7 @@ import { AnimatedCard } from "./components/AnimatedCard";
 import { useDashboardRotation } from "./hooks/useDashboardRotation.";
 
 export default function Home() {
-  const ROTATION_INTERVAL = 30000;
-  const { priorityItem, rotatingItem } = useDashboardRotation(ROTATION_INTERVAL);
+  const { priorityItem, rotatingItem, rotationInterval } = useDashboardRotation(30000);
 
   const PriorityComp = priorityItem.component;
   const RotatingComp = rotatingItem.component;
@@ -28,7 +27,7 @@ export default function Home() {
             key={rotatingItem.id}
             className="h-full bg-[#00305D]"
             style={{
-              animation: `progressAnimation ${ROTATION_INTERVAL}ms linear forwards`
+              animation: `progressAnimation ${rotationInterval}ms linear forwards`
             }}
           />
         </div>
