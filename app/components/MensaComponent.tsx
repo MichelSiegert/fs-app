@@ -12,15 +12,6 @@ export function MensaComponent() {
 
             if (res?.success && Array.isArray(res.meals)) {
                 res.meals = res.meals
-                    .filter((e: any) => {
-                        const name = e.meal.toLowerCase().trim();
-
-                        const hasHalbe = name.includes("halbe");
-                        const hasNurSo = name.includes("nur so");
-                        const startsWithUnd = name.startsWith("und");
-
-                        return !hasHalbe && !hasNurSo && !startsWithUnd;
-                    })
                     .sort((a: any, b: any) => {
                         return getLeftmostNumericPrice(b.price) - getLeftmostNumericPrice(a.price);
                     });
