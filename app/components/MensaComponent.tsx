@@ -51,8 +51,8 @@ export function MensaComponent() {
                         key={e.meal}
                         className="w-full bg-white my-5 p-4 border border-gray-200 rounded-lg shadow-sm flex justify-between items-center hover:shadow-md transition-shadow"
                     >
-                        <div className="text-2xl font-medium text-gray-800 w-10/12 pr-4">{e.meal}</div>
-                        <div className="text-2xl font-semibold text-emerald-600 w-2/12 text-right">
+                        <div className="text-3xl font-medium text-gray-800 w-10/12 pr-4">{e.meal}</div>
+                        <div className="text-3xl font-semibold text-emerald-600 w-2/12 text-right">
                             {getLeftmostDisplayPrice(e.price)}
                         </div>
                     </div>
