@@ -1,6 +1,6 @@
 for i in {1..150}; do
     if curl -s -o /dev/null http://localhost:3000; then
-        xdg-open http://localhost:3000
+        firefox --kiosk http://localhost:3000
         exit 0
     fi
     sleep 2
