@@ -6,11 +6,14 @@ import { DASHBOARD_COMPONENTS } from '../components/registry';
 import MinecraftComponent from '../components/MinecraftComponent';
 import { DailyChessPuzzleComponent } from '../components/ChessComponent';
 import { AltklausurenComponent } from '../components/AltklausurenComponent';
+import SubwaySurferComponent from '../components/SubwaySurfer/SubwaySurfer';
 
 const RECREATIONAL_ITEMS = [
   { id: 'chess', name: 'Chess Puzzle', component: DailyChessPuzzleComponent },
   { id: 'minecraft', name: 'Minecraft', component: MinecraftComponent },
   { id: 'klausuren', name: 'Altklausuren', component: AltklausurenComponent },
+  {id: 'surfer', name: 'surfer', component: SubwaySurferComponent, 
+    },
 ];
 
 const COMPONENT_DURATIONS: Record<string, number> = {
@@ -20,6 +23,7 @@ const COMPONENT_DURATIONS: Record<string, number> = {
   coffee: 30 * 1000,    
   mensa: 20 * 1000,     
   bus: 60 * 1000,       
+  surfer: 30 * 1000,
 };
 
 export function useDashboardRotation(defaultIntervalMs = 30000) {
