@@ -12,8 +12,7 @@ const RECREATIONAL_ITEMS = [
   { id: 'chess', name: 'Chess Puzzle', component: DailyChessPuzzleComponent },
   { id: 'minecraft', name: 'Minecraft', component: MinecraftComponent },
   { id: 'klausuren', name: 'Altklausuren', component: AltklausurenComponent },
-  {id: 'surfer', name: 'surfer', component: SubwaySurferComponent, 
-    },
+  { id: 'surfer', name: 'surfer', component: SubwaySurferComponent },
 ];
 
 const COMPONENT_DURATIONS: Record<string, number> = {
@@ -25,6 +24,20 @@ const COMPONENT_DURATIONS: Record<string, number> = {
   bus: 60 * 1000,       
   surfer: 15 * 1000,
 };
+
+function getRandomRecreationalItem() {
+  const rand = Math.random() * 100;
+
+  if (rand < 50) {
+    return RECREATIONAL_ITEMS.find((item) => item.id === 'klausuren')!;
+  } else if (rand < 51) {
+    return RECREATIONAL_ITEMS.find((item) => item.id === 'surfer')!;
+  } else {
+    const remaining = RECREATIONAL_ITEMS.filter((item) => item.id === 'chess' || item.id === 'minecraft');
+    const index = Math.floor(Math.random() * remaining.length);
+    return remaining[index];
+  }
+}
 
 export function useDashboardRotation(defaultIntervalMs = 30000) {
   const [now, setNow] = useState<Date | null>(null);
@@ -72,9 +85,9 @@ export function useDashboardRotation(defaultIntervalMs = 30000) {
     let timeoutDuration = defaultIntervalMs;
 
     if (rawRotatingComponent.id === 'recreational') {
-      const randomItem = RECREATIONAL_ITEMS[Math.floor(Math.random() * RECREATIONAL_ITEMS.length)];
-      setCurrentRecreational(randomItem);
-      timeoutDuration = COMPONENT_DURATIONS[randomItem.id] || defaultIntervalMs;
+      const weightedItem = getRandomRecreationalItem();
+      setCurrentRecreational(weightedItem);
+      timeoutDuration = COMPONENT_DURATIONS[weightedItem.id] || defaultIntervalMs;
     } else {
       timeoutDuration = COMPONENT_DURATIONS[rawRotatingComponent.id] || defaultIntervalMs;
     }
