@@ -13,7 +13,7 @@ export interface DashboardComponentConfig {
 
 const isMensaHours = (now: Date) => {
     const mins = now.getHours() * 60 + now.getMinutes();
-    return mins >= 10 * 60 && mins < 12 * 60 + 15;
+    return mins >= 10 * 60 && mins < 12 * 60 + 45;
 };
 
 const isMensaVisible = (now: Date) => {
