@@ -105,8 +105,8 @@ export function useDashboardRotation(defaultIntervalMs = 30000) {
 
     if (rawRotatingComponent?.id === 'recreational') {
       const weightedItem = getRandomRecreationalItem();
-      setCurrentRecreational(weightedItem);
-      timeoutDuration = COMPONENT_DURATIONS[weightedItem.id] || defaultIntervalMs;
+      setCurrentRecreational(weightedItem!);
+      timeoutDuration = COMPONENT_DURATIONS[weightedItem!.id] || defaultIntervalMs;
     } else if (rawRotatingComponent) {
       timeoutDuration = COMPONENT_DURATIONS[rawRotatingComponent.id] || defaultIntervalMs;
     }
