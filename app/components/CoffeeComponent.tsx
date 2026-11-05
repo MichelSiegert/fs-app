@@ -34,6 +34,7 @@ export default function CoffeeComponent() {
   const totalCupsMax = 10;
   const currentCups = Math.min(Math.max(status.cups, 0), totalCupsMax);
   const isNoCoffee = !loading && currentCups === 0;
+  const isOneLeft = !loading && currentCups === 1;
 
   const formattedTime = status.mtime
     ? new Date(status.mtime).toLocaleTimeString('de-DE', {
@@ -46,7 +47,11 @@ export default function CoffeeComponent() {
   return (
     <div className="w-full max-w-xl space-y-4 justify-center content-center" style={{ height: "stretch" }}>
       <div className={`w-full p-8 rounded-2xl border shadow-sm flex flex-col justify-center items-center text-center space-y-8 transition-colors ${
-        isNoCoffee ? 'bg-red-50 border-red-300' : 'bg-white border-zinc-200'
+        isNoCoffee 
+          ? 'bg-red-50 border-red-300' 
+          : isOneLeft 
+          ? 'bg-amber-50 border-amber-300' 
+          : 'bg-white border-zinc-200'
       }`}>
         <h2 className="text-4xl sm:text-5xl font-bold text-zinc-900 tracking-tight">
           Gibt&apos;s Kaffee?
@@ -60,6 +65,16 @@ export default function CoffeeComponent() {
             </div>
             <span className="text-3xl sm:text-4xl font-extrabold text-red-600 tracking-wider uppercase animate-bounce">
               KEIN KAFFEE MEHR!
+            </span>
+          </div>
+        ) : isOneLeft ? (
+          <div className="flex flex-col items-center justify-center space-y-4 my-2">
+            <div className="relative flex items-center justify-center">
+              <span className="absolute inline-flex h-36 w-36 sm:h-48 sm:w-48 rounded-full  opacity-75" />
+              <AlertTriangle className="relative w-36 h-36 sm:w-48 sm:h-48 text-amber-600 drop-shadow-md" />
+            </div>
+            <span className="text-3xl sm:text-4xl font-extrabold text-amber-700 tracking-wider uppercase ">
+              NUR NOCH 1 TASSE ÜBRIG!
             </span>
           </div>
         ) : (
@@ -83,11 +98,19 @@ export default function CoffeeComponent() {
         )}
 
         <div className="space-y-1.5">
-          <p className={`text-2xl sm:text-3xl font-medium ${isNoCoffee ? 'text-red-700 font-bold' : 'text-zinc-800'}`}>
+          <p className={`text-2xl sm:text-3xl font-medium ${
+            isNoCoffee 
+              ? 'text-red-700 font-bold' 
+              : isOneLeft 
+              ? 'text-amber-800 font-bold' 
+              : 'text-zinc-800'
+          }`}>
             {loading
               ? 'Lade Kaffeestatus...'
               : isNoCoffee
               ? '0 von 10 Tassen verfügbar!'
+              : isOneLeft
+              ? ''
               : `${currentCups} von ${totalCupsMax} Tassen verfügbar`}
           </p>
           {formattedTime && (

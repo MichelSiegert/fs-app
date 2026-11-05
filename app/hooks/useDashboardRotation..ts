@@ -1,29 +1,11 @@
 /* eslint-disable react-hooks/set-state-in-effect */
 'use client';
 
-import { useState, useEffect, useMemo } from 'react';
+import { useState, useEffect, useMemo } from 'react'
+import { RECREATIONAL_ITEMS } from '../constants/recreationalComponents';
+import { COMPONENT_PRIORITIES } from '../constants/componentPriorities';
+import { COMPONENT_DURATIONS } from '../constants/componentDuration';
 import { DASHBOARD_COMPONENTS } from '../components/registry';
-import MinecraftComponent from '../components/MinecraftComponent';
-import { DailyChessPuzzleComponent } from '../components/ChessComponent';
-import { AltklausurenComponent } from '../components/AltklausurenComponent';
-import SubwaySurferComponent from '../components/SubwaySurfer/SubwaySurfer';
-
-const RECREATIONAL_ITEMS = [
-  { id: 'chess', name: 'Chess Puzzle', component: DailyChessPuzzleComponent },
-  { id: 'minecraft', name: 'Minecraft', component: MinecraftComponent },
-  { id: 'klausuren', name: 'Altklausuren', component: AltklausurenComponent },
-  { id: 'surfer', name: 'surfer', component: SubwaySurferComponent },
-];
-
-const COMPONENT_DURATIONS: Record<string, number> = {
-  chess: 60 * 1000,     
-  minecraft: 15 * 1000, 
-  klausuren: 15 * 1000, 
-  coffee: 15 * 1000,    
-  mensa: 30 * 1000,     
-  bus: 60 * 1000,       
-  surfer: 15 * 1000,
-};
 
 function getRandomRecreationalItem() {
   const rand = Math.random() * 100;
@@ -42,7 +24,8 @@ function getRandomRecreationalItem() {
 export function useDashboardRotation(defaultIntervalMs = 30000) {
   const [now, setNow] = useState<Date | null>(null);
   const [rotationIndex, setRotationIndex] = useState(0);
-  
+  const [coffeeStatus, setCoffeeStatus] = useState<{ cups?: number } | null>(null);
+
   const [currentRecreational, setCurrentRecreational] = useState(RECREATIONAL_ITEMS[0]);
   const [currentInterval, setCurrentInterval] = useState(defaultIntervalMs);
 
@@ -52,18 +35,52 @@ export function useDashboardRotation(defaultIntervalMs = 30000) {
     return () => clearInterval(timer);
   }, []);
 
+  useEffect(() => {
+    const fetchCoffee = async () => {
+      try {
+        const res = await fetch('https://api.fsie-kiel.de/coffee');
+        const data = await res.json();
+        setCoffeeStatus(data);
+      } catch {}
+    };
+
+    fetchCoffee();
+    const timer = setInterval(fetchCoffee, 60000);
+    return () => clearInterval(timer);
+  }, []);
+
   const visibleComponents = useMemo(() => {
     if (!now) return DASHBOARD_COMPONENTS;
     return DASHBOARD_COMPONENTS.filter((item) => (item.isVisible ? item.isVisible(now) : true));
   }, [now]);
 
-  const priorityComponent = useMemo(() => {
-    if (!now) return undefined;
-    return visibleComponents.find((item) => item.isScheduled?.(now));
-  }, [visibleComponents, now]);
+  const activePriorityItem = useMemo(() => {
+    if (!now) return visibleComponents[0];
 
-  const defaultPriority = visibleComponents.find((c) => c.id === 'bus') || visibleComponents[0];
-  const activePriorityItem = priorityComponent || defaultPriority;
+    const getPriority = (id: string) => {
+      if (id === 'coffee') {
+        return coffeeStatus?.cups === 0 ? 9000 : -1;
+      }
+      return COMPONENT_PRIORITIES[id] ?? 0;
+    };
+
+    const eligiblePriorityItems = visibleComponents.filter((item) => {
+      if (item.id === 'coffee' && coffeeStatus?.cups === 0) return true;
+      return Boolean(item.isScheduled?.(now));
+    });
+
+    if (eligiblePriorityItems.length === 0) {
+      return (
+        [...visibleComponents].sort(
+          (a, b) => getPriority(b.id) - getPriority(a.id)
+        )[0] || visibleComponents[0]
+      );
+    }
+
+    return eligiblePriorityItems.sort(
+      (a, b) => getPriority(b.id) - getPriority(a.id)
+    )[0];
+  }, [visibleComponents, now, coffeeStatus]);
 
   const poolComponents = useMemo(() => {
     return visibleComponents.filter((item) => item.id !== activePriorityItem?.id);
@@ -73,7 +90,7 @@ export function useDashboardRotation(defaultIntervalMs = 30000) {
   const rawRotatingComponent = poolComponents[safeIndex] || visibleComponents[0];
 
   const rotatingItem = useMemo(() => {
-    if (rawRotatingComponent.id === 'recreational') {
+    if (rawRotatingComponent?.id === 'recreational') {
       return currentRecreational;
     }
     return rawRotatingComponent;
@@ -84,11 +101,11 @@ export function useDashboardRotation(defaultIntervalMs = 30000) {
 
     let timeoutDuration = defaultIntervalMs;
 
-    if (rawRotatingComponent.id === 'recreational') {
+    if (rawRotatingComponent?.id === 'recreational') {
       const weightedItem = getRandomRecreationalItem();
       setCurrentRecreational(weightedItem);
       timeoutDuration = COMPONENT_DURATIONS[weightedItem.id] || defaultIntervalMs;
-    } else {
+    } else if (rawRotatingComponent) {
       timeoutDuration = COMPONENT_DURATIONS[rawRotatingComponent.id] || defaultIntervalMs;
     }
 
@@ -98,8 +115,8 @@ export function useDashboardRotation(defaultIntervalMs = 30000) {
       setRotationIndex((prev) => (prev + 1) % poolComponents.length);
     }, timeoutDuration);
 
-    return () => clearTimeout(timer);
-  }, [rotationIndex, poolComponents.length, rawRotatingComponent.id, defaultIntervalMs]);
+    return () => clearInterval(timer);
+  }, [rotationIndex, poolComponents.length, rawRotatingComponent, defaultIntervalMs]);
 
   return {
     priorityItem: activePriorityItem,

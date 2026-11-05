@@ -1,3 +1,6 @@
+/* eslint-disable react-hooks/set-state-in-effect */
+'use client';
+
 import React from 'react';
 import CoffeeComponent from './CoffeeComponent';
 import { MensaComponent } from './MensaComponent';
@@ -10,6 +13,16 @@ export interface DashboardComponentConfig {
     isScheduled?: (now: Date) => boolean;
     isVisible?: (now: Date) => boolean;
 }
+
+let currentCoffeeCups: number | null = null;
+
+export const updateCoffeeCups = (cups: number) => {
+    currentCoffeeCups = cups;
+};
+
+const isCoffeeScheduled = () => {
+    return currentCoffeeCups === 0;
+};
 
 const isMensaHours = (now: Date) => {
     const mins = now.getHours() * 60 + now.getMinutes();
@@ -25,12 +38,13 @@ export const DASHBOARD_COMPONENTS: DashboardComponentConfig[] = [
     {
         id: 'recreational',
         name: 'Recreational',
-        component: CoffeeComponent, // could be any I know this is horrible code but it works.
+        component: CoffeeComponent,
     },
     {
         id: 'coffee',
         name: 'Coffee Status',
         component: CoffeeComponent,
+        isScheduled: isCoffeeScheduled,
     },
     {
         id: 'mensa',
