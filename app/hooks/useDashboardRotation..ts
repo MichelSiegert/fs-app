@@ -67,17 +67,8 @@ export function useDashboardRotation(defaultIntervalMs = 30000) {
     };
 
     const eligiblePriorityItems = visibleComponents.filter((item) => {
-      if (item.id === 'coffee' && coffeeStatus?.cups === 0) return true;
-      return Boolean(item.isScheduled?.(now));
+      return Boolean(item.priorityReason?.(now));
     });
-
-    if (eligiblePriorityItems.length === 0) {
-      return (
-        [...visibleComponents].sort(
-          (a, b) => getPriority(b.id) - getPriority(a.id)
-        )[0] || visibleComponents[0]
-      );
-    }
 
     return eligiblePriorityItems.sort(
       (a, b) => getPriority(b.id) - getPriority(a.id)

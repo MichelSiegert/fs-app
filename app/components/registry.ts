@@ -1,17 +1,15 @@
-/* eslint-disable react-hooks/set-state-in-effect */
 'use client';
 
 import React from 'react';
 import CoffeeComponent from './CoffeeComponent';
 import { MensaComponent } from './MensaComponent';
 import { BusComponent } from './BusComponent';
-import InfModulTierList from './Tierlist/ChessComponent';
 
 export interface DashboardComponentConfig {
     id: string;
     name: string;
     component: React.ComponentType;
-    isScheduled?: (now: Date) => boolean;
+    priorityReason?: (now: Date) => boolean;
     isVisible?: (now: Date) => boolean;
 }
 
@@ -21,9 +19,14 @@ export const updateCoffeeCups = (cups: number) => {
     currentCoffeeCups = cups;
 };
 
-const isCoffeeScheduled = () => {
+const isNoCoffee = () => {
     return currentCoffeeCups === 0;
 };
+
+const isCoffeeVisible = (now: Date)=>{
+    const mins = now.getHours() * 60 + now.getMinutes();
+    return mins < 15 * 60  || currentCoffeeCups !== 0;
+}
 
 const isMensaHours = (now: Date) => {
     const mins = now.getHours() * 60 + now.getMinutes();
@@ -35,6 +38,8 @@ const isMensaVisible = (now: Date) => {
     return mins < 14 * 60 + 20;
 };
 
+const busSchedule = (now: Date)=>true;
+
 export const DASHBOARD_COMPONENTS: DashboardComponentConfig[] = [
     {
         id: 'recreational',
@@ -45,18 +50,20 @@ export const DASHBOARD_COMPONENTS: DashboardComponentConfig[] = [
         id: 'coffee',
         name: 'Coffee Status',
         component: CoffeeComponent,
-        isScheduled: isCoffeeScheduled,
+        priorityReason: isNoCoffee,
+        isVisible: isCoffeeVisible
     },
     {
         id: 'mensa',
         name: 'Mensa Menu',
         component: MensaComponent,
-        isScheduled: isMensaHours,
+        priorityReason: isMensaHours,
         isVisible: isMensaVisible,
     },
     {
         id: 'bus',
         name: 'Bus Schedule',
         component: BusComponent,
+        priorityReason: busSchedule
     },
 ];
