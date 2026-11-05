@@ -5,6 +5,7 @@ import React from 'react';
 import CoffeeComponent from './CoffeeComponent';
 import { MensaComponent } from './MensaComponent';
 import { BusComponent } from './BusComponent';
+import InfModulTierList from './Tierlist/ChessComponent';
 
 export interface DashboardComponentConfig {
     id: string;

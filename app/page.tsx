@@ -17,7 +17,7 @@ export default function Home() {
         </AnimatedCard>
       </section>
 
-      <section className="w-full md:w-1/2 p-6 flex flex-col items-center bg-white min-h-full relative pb-8">
+      <section className="w-full md:w-1/2 flex flex-col items-center bg-white min-h-full relative">
         <AnimatedCard componentKey={rotatingItem.id}>
           <RotatingComp />
         </AnimatedCard>

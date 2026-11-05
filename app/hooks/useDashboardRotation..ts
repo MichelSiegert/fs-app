@@ -10,9 +10,11 @@ import { DASHBOARD_COMPONENTS } from '../components/registry';
 function getRandomRecreationalItem() {
   const rand = Math.random() * 100;
 
-  if (rand < 50) {
+  if (rand < 30) {
     return RECREATIONAL_ITEMS.find((item) => item.id === 'klausuren')!;
-  } else if (rand < 51) {
+  } else if(rand < 50){
+    return RECREATIONAL_ITEMS.find((item=> item.id === "modtierlist"))
+  }else if (rand < 51) {
     return RECREATIONAL_ITEMS.find((item) => item.id === 'surfer')!;
   } else {
     const remaining = RECREATIONAL_ITEMS.filter((item) => item.id === 'chess' || item.id === 'minecraft');
