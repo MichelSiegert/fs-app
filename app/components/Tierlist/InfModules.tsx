@@ -57,7 +57,7 @@ const sampleRankings: TierData = {
 export default function InfModulTierList() {
     return (
         <main className="w-full">
-            <TierListComponent data={sampleRankings} />
+            <TierListComponent data={sampleRankings} title="Modultierlist Informatik" />
         </main>
     );
 }

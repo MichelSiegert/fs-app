@@ -28,12 +28,20 @@ const TIER_STYLES: TierConfig[] = [
 
 interface StaticTierListProps {
     data: TierData;
+    title?: string;
 }
 
-export function TierListComponent({ data }: StaticTierListProps) {
+export function TierListComponent({ data, title }: StaticTierListProps) {
     return (
         <div className="w-full mx-auto space-y-6 h-full">
             <div className="space-y-2 h-full max-h overflow-hidden border border-zinc-200 shadow-md bg-zinc-900 p-2 sm:p-3">
+                {title && (
+                    <h2 className="text-center text-3xl sm:text-5xl font-black text-zinc-100 tracking-tight py-2 select-none">
+                        {title}
+                    </h2>
+                )}
+
+
                 {TIER_STYLES.map((tier) => {
                     const items = data[tier.id] || [];
 
