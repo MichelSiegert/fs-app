@@ -95,7 +95,7 @@ export function useDashboardRotation(defaultIntervalMs = 30000) {
     return visibleComponents.filter((item) => item.id !== activePriorityItem?.id);
   }, [visibleComponents, activePriorityItem]);
 
-  const cycleRecreational = visibleComponents.length === DASHBOARD_COMPONENTS.length;
+  const cycleRecreational = visibleComponents.length === 1;
 
   const safeIndex = poolComponents.length > 0 ? rotationIndex % poolComponents.length : 0;
   const rawRotatingComponent = poolComponents[safeIndex] || visibleComponents[0];
