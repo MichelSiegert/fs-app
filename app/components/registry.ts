@@ -40,7 +40,7 @@ const isNoCoffee = () => {
 
 const isCoffeeVisible = (now: Date) => {
     const mins = now.getHours() * 60 + now.getMinutes();
-    return mins < 14 * 60 + 30 || currentCoffeeCups === 0;
+    return mins < 14 * 60 + 30  || (currentCoffeeCups ?? 0) >  0;
 };
 
 const isMensaHours = (now: Date) => {
