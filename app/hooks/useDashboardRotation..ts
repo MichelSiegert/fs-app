@@ -113,7 +113,7 @@ export function useDashboardRotation(defaultIntervalMs = 30000) {
     if (poolComponents.length === 0) return;
 
     const isRecreational = rawRotatingComponent?.id === 'recreational';
-    const onlyRecreational = poolComponents.length === 1 && isRecreational;
+    const onlyRecreational = poolComponents.length === 2 && isRecreational;
     let timeoutDuration = defaultIntervalMs;
 
     if (isRecreational) {
