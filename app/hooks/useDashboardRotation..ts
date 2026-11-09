@@ -15,7 +15,7 @@ function pickWeighted() {
   } else if (rand < 50) {
     return RECREATIONAL_ITEMS.find((item) => item.id === 'modtierlist')!;
   } else if (rand < 51) {
-    return RECREATIONAL_ITEMS.find((item) => item.id === 'surfer')!;
+    return RECREATIONAL_ITEMS.find((item) => item.id === 'rot')!;
   } else {
     const remaining = RECREATIONAL_ITEMS.filter((item) => item.id === 'chess' || item.id === 'minecraft');
     const index = Math.floor(Math.random() * remaining.length);
