@@ -7,6 +7,11 @@ function getColorByName(name: string) {
     else return "bg-[#85C3DF]";
 }
 
+function getFontColorByName(name: string){
+    if (name.includes("60") || name.includes("11")) return "text-[#FFFFFF]";
+    else return "text-[#202020]";
+}
+
 export function BusComponent() {
     const [data, setData] = useState<any>(null);
     const [loading, setLoading] = useState(true);
@@ -48,17 +53,24 @@ export function BusComponent() {
                         <div key={idx} className="bg-white p-4 rounded-xl border border-zinc-200 shadow-xs space-y-3 text-xl">
                             <div className="flex flex-col gap-3 w-full">
 
-                                <div className="flex justify-between items-center text-2xl font-semibold">
-                                    <div className="flex items-center gap-2">
-                                        <span className="text-sm text-zinc-400 font-normal">Ab:</span>
-                                        <span className="text-black">
-                                            {depPlanned.toLocaleTimeString('de-DE', { hour: '2-digit', minute: '2-digit', hour12: false })}
-                                        </span>
-                                    </div>
-                                </div>
+ 
 
-                                <div className={"w-full text-center font-bold text-white rounded-md text-2xl py-1.5     " + getColorByName(journey.lineName)}>
-                                    {journey.lineName}
+                                <div className={`w-full font-bold text-black  rounded-md text-6xl   flex justify-around   ${getColorByName(journey.lineName)}`}>
+                                    
+                                    <div className="content-center">
+                                        <div className="flex justify-between items-center text-2xl font-semibold ">
+                                          <div className="flex items-center gap-2    ">
+                                            <span className={`text-4xl font-normal ${getFontColorByName(journey.lineName)}`}>Ab:</span>
+                                            <span className={`${getFontColorByName(journey.lineName)} text-6xl`}>
+                                                {depPlanned.toLocaleTimeString('de-DE', { hour: '2-digit', minute: '2-digit', hour12: false })}
+                                            </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div className={` text-center py-4 ${getFontColorByName(journey.lineName)}`}>
+                                        {journey.lineName}
+                                    </div>
+
                                 </div>
 
                                 <div className="text-2xl flex w-full justify-between items-center text-zinc-800">
