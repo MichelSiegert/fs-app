@@ -42,7 +42,6 @@ export function DailyChessPuzzleComponent() {
             });
     }, []);
 
-    // Lichess static board thumbnail generator
     const boardImageUrl = puzzleData
         ? `https://lichess1.org/training/export/gif/thumbnail/${puzzleData.puzzle.id}.gif`
         : '';

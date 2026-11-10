@@ -1,9 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { useEffect, useState } from "react";
 
-//#85C3DF für Fähren
-// Spotify, Chess
-
 function getColorByName(name: string) {
     if (name.includes("60")) return "bg-[#E3242B]";
     else if (name.includes("11")) return "bg-[#00305D]";
