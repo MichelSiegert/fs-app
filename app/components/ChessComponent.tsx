@@ -66,7 +66,7 @@ export function DailyChessPuzzleComponent() {
 
                 {!loading && !error && puzzleData && (
                     <>
-                    <div className='justify-center w-full text-6xl font-semibold'>Tägliches Schachpuzzle</div>
+                    <div className='justify-center w-full text-6xl font-semibold'>Tägliches Schachpuzzle:</div>
                     <div className="overflow-hidden rounded-xl border border-zinc-200 shadow-md pointer-events-none select-none w-full max-w-11/12 justify-self-center">
                         <img
                             src={boardImageUrl}
