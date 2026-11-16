@@ -57,11 +57,6 @@ const isMensaVisible = (now: Date) => {
 const busSchedule = (now: Date) => true;
 
 export const DASHBOARD_COMPONENTS: DashboardComponentConfig[] = [
-        { 
-        id: 'klausuren',
-        name: 'Altklausuren',
-        component: AltklausurenComponent
-    },
     {
         id: 'recreational',
         name: 'Recreational',
@@ -87,5 +82,9 @@ export const DASHBOARD_COMPONENTS: DashboardComponentConfig[] = [
         component: BusComponent,
         priorityReason: busSchedule
     },
-
+    { 
+        id: 'klausuren',
+        name: 'Altklausuren',
+        component: AltklausurenComponent
+    },
 ];

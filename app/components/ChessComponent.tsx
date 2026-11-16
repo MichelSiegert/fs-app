@@ -46,12 +46,9 @@ export function DailyChessPuzzleComponent() {
         ? `https://lichess1.org/training/export/gif/thumbnail/${puzzleData.puzzle.id}.gif`
         : '';
 
-    const playerWhite = puzzleData?.game?.players?.[0]?.name || 'Weiss';
-    const playerBlack = puzzleData?.game?.players?.[1]?.name || 'Schwarz';
 
     return (
-        <div className="w-full max-w-3xl space-y-6 justify-center content-center mx-auto" style={{ height: "stretch" }}>
-            <div className="w-full p-10 sm:p-12 rounded-3xl border border-zinc-200 bg-white shadow-md flex flex-col justify-center items-center text-center space-y-8">
+        <div className="w-full text-center space-y-6 justify-center content-center mx-auto" style={{ height: "stretch" }}>
 
                 {loading && (
                     <div className="w-full p-16 flex flex-col items-center justify-center text-zinc-400 gap-4">
@@ -68,22 +65,18 @@ export function DailyChessPuzzleComponent() {
                 )}
 
                 {!loading && !error && puzzleData && (
-                <div className="w-full bg-zinc-50 p-6 sm:p-8 rounded-2xl border border-zinc-200/80 flex flex-col items-center justify-center space-y-4">
-                    <div className="overflow-hidden rounded-xl border border-zinc-200 shadow-md pointer-events-none select-none w-full max-w-[560px]">
+                    <>
+                    <div className='justify-center w-full text-6xl font-semibold'>Tägliches Schachpuzzle</div>
+                    <div className="overflow-hidden rounded-xl border border-zinc-200 shadow-md pointer-events-none select-none w-full max-w-11/12 justify-self-center">
                         <img
                             src={boardImageUrl}
                             alt={`Lichess Puzzle ${puzzleData.puzzle.id}`}
                             className="w-full h-auto object-contain mx-auto rounded-lg"
                         />
                     </div>
-
-                    <p className="text-base sm:text-lg text-zinc-600 font-medium select-none pt-2">
-                        {playerWhite} vs. {playerBlack}
-                    </p>
-                </div>
+                </>
                 )}
 
-            </div>
         </div>
     );
 }
