@@ -68,32 +68,19 @@ export function DailyChessPuzzleComponent() {
                 )}
 
                 {!loading && !error && puzzleData && (
-                    <>
-                        <div className="w-full rounded-2xl bg-amber-50/80 border border-amber-200/80 text-amber-900 flex flex-col items-center justify-center gap-2">
-                            <span className="font-bold text-xl sm:text-4xl">
-                                Rating: {puzzleData.puzzle.rating}
-                            </span>
-                            {puzzleData.puzzle.themes.length > 0 && (
-                                <span className="text-base sm:text-lg font-medium text-amber-700/80 capitalize">
-                                    {puzzleData.puzzle.themes.slice(0, 3).join(' • ')}
-                                </span>
-                            )}
-                        </div>
+                <div className="w-full bg-zinc-50 p-6 sm:p-8 rounded-2xl border border-zinc-200/80 flex flex-col items-center justify-center space-y-4">
+                    <div className="overflow-hidden rounded-xl border border-zinc-200 shadow-md pointer-events-none select-none w-full max-w-[560px]">
+                        <img
+                            src={boardImageUrl}
+                            alt={`Lichess Puzzle ${puzzleData.puzzle.id}`}
+                            className="w-full h-auto object-contain mx-auto rounded-lg"
+                        />
+                    </div>
 
-                        <div className="w-full bg-zinc-50 p-6 sm:p-8 rounded-2xl border border-zinc-200/80 flex flex-col items-center justify-center space-y-4">
-                            <div className="overflow-hidden rounded-xl border border-zinc-200 shadow-md pointer-events-none select-none w-full max-w-[560px]">
-                                <img
-                                    src={boardImageUrl}
-                                    alt={`Lichess Puzzle ${puzzleData.puzzle.id}`}
-                                    className="w-full h-auto object-contain mx-auto rounded-lg"
-                                />
-                            </div>
-
-                            <p className="text-base sm:text-lg text-zinc-600 font-medium select-none pt-2">
-                                {playerWhite} vs. {playerBlack}
-                            </p>
-                        </div>
-                    </>
+                    <p className="text-base sm:text-lg text-zinc-600 font-medium select-none pt-2">
+                        {playerWhite} vs. {playerBlack}
+                    </p>
+                </div>
                 )}
 
             </div>

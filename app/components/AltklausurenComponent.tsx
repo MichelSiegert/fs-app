@@ -1,34 +1,34 @@
 'use client';
 
-import { FileText, Gift, Heart } from 'lucide-react';
+import { FileText, Gift } from 'lucide-react';
 
 export function AltklausurenComponent() {
     return (
-        <div className="w-full max-w-xl space-y-4 justify-center content-center" style={{ height: "stretch" }}>
-            <div className="w-full p-8 rounded-2xl border border-zinc-200 bg-white shadow-sm flex flex-col justify-center items-center text-center space-y-6">
+        <div className="w-full h-full mx-auto flex flex-col justify-center">
+            <div className="w-full h-full p-8 sm:p-12 rounded-2xl border border-zinc-200 bg-white shadow-md flex flex-col justify-evenly items-center text-center gap-6">
 
-                <div className="p-4 bg-amber-50 rounded-2xl border border-amber-200 text-amber-600">
-                    <FileText className="w-10 h-10 sm:w-12 sm:h-12" />
+                <div className="p-6 bg-amber-50 rounded-3xl border border-amber-200 text-amber-600">
+                    <FileText className="w-16 h-16 sm:w-20 sm:h-20" />
                 </div>
 
-                <div className="space-y-2">
-                    <h2 className="text-3xl sm:text-4xl font-bold text-zinc-900 tracking-tight">
+                <div>
+                    <h2 className="text-4xl sm:text-6xl font-black text-zinc-900 tracking-tight">
                         Wir sammeln Altklausuren!
                     </h2>
                 </div>
 
-                <div className="w-full p-4 rounded-xl bg-amber-50/80 border border-amber-200/80 text-xl text-amber-900 flex items-center justify-center gap-3">
-                    <Gift className="w-6 h-6 text-amber-600 shrink-0" />
-                    <span className="font-semibold text-3xl">
+                <div className="w-full max-w-4xl p-6 sm:p-8 rounded-2xl bg-amber-50/80 border border-amber-200/80 text-amber-900 flex items-center justify-center gap-4">
+                    <Gift className="w-10 h-10 sm:w-12 sm:h-12 text-amber-600 shrink-0" />
+                    <span className="font-bold text-2xl sm:text-4xl">
                         Sichere dir eine gratis 5er-Getränkekarte!
                     </span>
                 </div>
 
-                <div className="w-full text-left bg-zinc-50 p-4 rounded-xl border border-zinc-200/80 space-y-2">
-                    <p className="text-2xl font-semibold tracking-wider text-zinc-500">
+                <div className="w-full max-w-4xl text-left bg-zinc-50 p-6 sm:p-8 rounded-2xl border border-zinc-200/80 space-y-4">
+                    <p className="text-2xl sm:text-3xl font-bold tracking-wide text-zinc-600">
                         Was du einreichen kannst:
                     </p>
-                    <ul className="text-xl text-zinc-700 space-y-1 list-disc list-inside">
+                    <ul className="text-xl sm:text-3xl text-zinc-700 space-y-3 list-disc list-inside">
                         <li>Gedankenprotokolle von Prüfungen</li>
                         <li>Alte Klausuren & Mitschriften</li>
                         <li>Weitere nützliche Modulleistungen</li>
