@@ -4,7 +4,7 @@ import React from 'react';
 import CoffeeComponent from './CoffeeComponent';
 import { MensaComponent } from './MensaComponent';
 import { BusComponent } from './BusComponent';
-import BrainrotComponent from './SubwaySurfer/BrainrotComponent';
+import { AltklausurenComponent } from './AltklausurenComponent';
 
 export interface DashboardComponentConfig {
     id: string;
@@ -81,5 +81,10 @@ export const DASHBOARD_COMPONENTS: DashboardComponentConfig[] = [
         name: 'Bus Schedule',
         component: BusComponent,
         priorityReason: busSchedule
+    },
+    { 
+        id: 'klausuren',
+        name: 'Altklausuren',
+        component: AltklausurenComponent
     },
 ];

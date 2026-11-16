@@ -12,9 +12,7 @@ function pickWeighted() {
 
   if (rand < 30) {
     return RECREATIONAL_ITEMS.find((item) => item.id === 'klausuren')!;
-  } else if (rand < 50) {
-    return RECREATIONAL_ITEMS.find((item) => item.id === 'modtierlist')!;
-  } else if (rand < 51) {
+  } else if (rand < 31) {
     return RECREATIONAL_ITEMS.find((item) => item.id === 'rot')!;
   } else {
     const remaining = RECREATIONAL_ITEMS.filter((item) => item.id === 'chess' || item.id === 'minecraft');

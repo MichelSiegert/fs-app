@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { Users, Wifi, WifiOff, Gamepad2, KeyRound } from 'lucide-react';
+import { Users, Wifi, WifiOff, KeyRound } from 'lucide-react';
 import { MinecraftData } from '../types/minecraft';
 
 export default function MinecraftComponent() {
