@@ -11,7 +11,7 @@ function pickWeighted() {
   const rand = Math.random() * 100;
 
   if (rand < 30) {
-    return RECREATIONAL_ITEMS.find((item) => item.id === 'klausuren')!;
+    return RECREATIONAL_ITEMS.find((item) => item.id === 'modtierlist')!;
   } else if (rand < 31) {
     return RECREATIONAL_ITEMS.find((item) => item.id === 'rot')!;
   } else {
@@ -124,6 +124,7 @@ export function useDashboardRotation(defaultIntervalMs = 30000) {
         );
         setCurrentRecreational(item);
       }
+      console.log(item);  
       lastRecreationalId.current = item.id;
       timeoutDuration = COMPONENT_DURATIONS[item.id] || defaultIntervalMs;
     } else if (rawRotatingComponent) {
