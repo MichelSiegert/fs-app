@@ -59,7 +59,7 @@ export function BusComponent() {
                                     
                                     <div className="w-7/12">
                                         <div className="flex justify-between items-center text-2xl font-semibold ">
-                                          <div className="flex items-center ">
+                                          <div className="flex items-center align-middle ">
                                             <span className={`text-6xl pl-3 ${getFontColorByName(journey.lineName)}`}>Ab:</span>
                                             <span className={`${getFontColorByName(journey.lineName)} text-6xl`}>
                                                 {depPlanned.toLocaleTimeString('de-DE', { hour: '2-digit', minute: '2-digit', hour12: false })}
