@@ -40,15 +40,18 @@ export function BusComponent() {
 
 
     return (
-        <div className="space-y-6 w-full mx-auto">
+        <div className="space-y-6 w-full mx-auto h-full ">
             <div className="space-y-3">
+                <div className="text-6xl text-center w-full mb-2 font-bold">
+                    Abfahrtszeiten:
+                </div>
                 {loading && !data && (
                     <div className="text-center py-12 text-zinc-400 text-lg">Fahrpläne werden geladen...</div>
                 )}
 
+                <div className="flex flex-col gap-7 h-full">
                 {data?.journeys?.map((journey: any, idx: number) => {
                     const depPlanned = new Date(journey.when);
-
                     return (
                         <div key={idx} className="bg-white p-3 rounded-xl border border-zinc-200 shadow-xs space-y-3 text-xl">
                             <div className="flex flex-col gap-3 w-full">
@@ -70,7 +73,7 @@ export function BusComponent() {
 
                                 </div>
 
-                                <div className="text-2xl flex w-full justify-between items-center text-zinc-800">
+                                <div className="text-4xl font-light flex w-full justify-between items-center text-zinc-800">
                                     <div className="">{journey.stopName}</div>
                                     <div className="text-right">{journey.destinationName}</div>
                                 </div>
@@ -79,6 +82,7 @@ export function BusComponent() {
                         </div>
                     );
                 })}
+                </div>
             </div>
         </div>
     );

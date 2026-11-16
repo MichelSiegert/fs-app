@@ -36,7 +36,10 @@ export function MensaComponent() {
     };
 
     return (
-        <div className="max-w-full mx-auto">
+        <div className="max-w-full mx-4">
+            <div className="text-6xl text-center w-full mb-2 font-bold mt-5">
+                    Schwentinemensa Essen:
+            </div>
             {(data?.success ?? false) && (data?.meals ?? []).length ? (
                 data.meals.map((e: any) => (
                     <div
@@ -62,6 +65,14 @@ export function MensaComponent() {
                 <p className="text-2xl text-emerald-900 leading-relaxed">
                     Von <span className="font-semibold">14:15 bis 14:30 Uhr</span> gibt es in der Mensa Reste-Teller.
                     Ist relativ cheap und es wird weniger wegeworfen.
+                </p>
+            </div>
+            <div className="mt-6 bg-gray-50 rounded-r-xl p-4 shadow-sm">
+                <div className="flex items-center gap-2 text-gray-800 text-3xl font-bold mb-1">
+                    <span>Andere Essensangebote...</span>
+                </div>
+                <p className="text-2xl text-gray-900 leading-relaxed">
+                    ... Auf dem Campus werden hier nicht integriert. 
                 </p>
             </div>
         </div>

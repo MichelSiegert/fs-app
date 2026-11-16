@@ -16,7 +16,7 @@ export async function GET() {
 
     const departures = await client.departures(originId, { 
       when: new Date(), 
-      results: 10,
+      results: 30,
       duration: 60
     });
 
@@ -36,7 +36,6 @@ export async function GET() {
           try {
             trip = await client.trip(dep.tripId, lineName);
             
-
             const lastStop = trip.stopovers?.[trip.stopovers.length - 1];
             if (lastStop) {
               arrivalTime = lastStop.arrival; 
@@ -61,11 +60,20 @@ export async function GET() {
 
     const filteredJourneys = enrichedJourneys
       .filter((e: any) => !e.destinationName.includes("HAW"))
-      .filter((e: any)=> e.when)
-      .slice(0, 6);
+      .filter((e: any)=> e.when);
+
+    const seen = new Set();
+    const uniqueJourneys = filteredJourneys.filter((e: any) => {
+      const key = `${e.lineName}-${e.destinationName}`;
+      if (seen.has(key)) {
+        return false;
+      }
+      seen.add(key);
+      return true;
+    });
 
     return NextResponse.json({
-      journeys: filteredJourneys
+      journeys: uniqueJourneys
     });
 
   } catch (error: any) {
