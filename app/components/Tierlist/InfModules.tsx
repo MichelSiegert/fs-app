@@ -1,9 +1,5 @@
 import { TierData, TierListComponent } from "./TierlistComponent";
 
-
-const modules = [
-
-]
 const sampleRankings: TierData = {
     S: [
         { id: '9', label: 'KS' },
