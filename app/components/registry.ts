@@ -66,6 +66,7 @@ export const DASHBOARD_COMPONENTS: DashboardComponentConfig[] = [
         id: 'coffee',
         name: 'Coffee Status',
         component: CoffeeComponent,
+        priorityReason: isNoCoffee,
         isVisible: isCoffeeVisible
     },
     {
