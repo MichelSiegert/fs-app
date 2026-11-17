@@ -57,7 +57,7 @@ export function BusComponent() {
                             <div className="flex flex-col gap-3 w-full">
                                 <div className={`w-full font-bold text-black rounded-2xl text-6xl flex  ${getColorByName(journey.lineName)}`}>
                                     
-                                    <div className="w-7/12">
+                                    <div className="w-7/12 content-center py-4">
                                         <div className="flex justify-between items-center text-2xl font-semibold ">
                                           <div className="flex items-center align-middle ">
                                             <span className={`text-6xl pl-3 ${getFontColorByName(journey.lineName)}`}>Ab:</span>
@@ -67,7 +67,7 @@ export function BusComponent() {
                                             </div>
                                         </div>
                                     </div>
-                                    <div className={` text-center py-4 ${getFontColorByName(journey.lineName)}`}>
+                                    <div className={` text-center content-center ${getFontColorByName(journey.lineName)}`}>
                                         {journey.lineName}
                                     </div>
 
