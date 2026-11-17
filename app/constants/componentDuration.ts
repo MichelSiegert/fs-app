@@ -8,5 +8,6 @@ export const COMPONENT_DURATIONS: Record<string, number> = {
   mensa: 30 * 1000,
   bus: 30 * 1000,
   rot: 30 * 1000,
+  lamp: 40 * 1000,
   modtierlist: 20 * 1000
 };
