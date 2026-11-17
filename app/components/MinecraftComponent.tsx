@@ -41,7 +41,7 @@ export default function MinecraftComponent() {
     }, [serverAddress]);
 
     return (
-        <div className="w-full max-w-4xl min-w-4xl   mx-auto space-y-6 content-center animate-spin [animation-duration:3000s]">
+        <div className="w-full max-w-4xl min-w-4xl   mx-auto space-y-6 content-center animate-spin [animation-duration:4000s]">
             <div className={`mx-5 w-full rounded-3xl border-2 p-6 sm:p-8 flex items-center justify-between transition-all ${
                 status.online 
                     ? 'text-green-500 border-green-600' 
