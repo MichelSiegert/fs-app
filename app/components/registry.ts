@@ -5,7 +5,6 @@ import CoffeeComponent from './CoffeeComponent';
 import { MensaComponent } from './MensaComponent';
 import { BusComponent } from './BusComponent';
 import { AltklausurenComponent } from './AltklausurenComponent';
-import { LampComponent } from './LampComponent';
 
 export interface DashboardComponentConfig {
     id: string;
@@ -58,11 +57,6 @@ const isMensaVisible = (now: Date) => {
 const busSchedule = (now: Date) => true;
 
 export const DASHBOARD_COMPONENTS: DashboardComponentConfig[] = [
-        {
-        id: 'lamp',
-        name: 'lamp',
-        component: LampComponent,
-    },
     {
         id: 'recreational',
         name: 'Recreational',

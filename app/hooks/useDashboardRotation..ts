@@ -10,12 +10,10 @@ import { DASHBOARD_COMPONENTS } from '../components/registry';
 function pickWeighted() {
   const rand = Math.random() * 100;
 
-  if (rand < 30) {
-    return RECREATIONAL_ITEMS.find((item) => item.id === 'modtierlist')!;
-  } else if (rand < 31) {
+  if (rand < 1) {
     return RECREATIONAL_ITEMS.find((item) => item.id === 'rot')!;
   } else {
-    const remaining = RECREATIONAL_ITEMS.filter((item) => item.id === 'chess' || item.id === 'minecraft');
+    const remaining = RECREATIONAL_ITEMS.filter((item) => item.id !== 'rot');
     const index = Math.floor(Math.random() * remaining.length);
     return remaining[index];
   }
