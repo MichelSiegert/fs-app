@@ -95,7 +95,7 @@ export default function MinecraftComponent() {
                 <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b-2 border-zinc-100 pb-6">
                     <span className="text-3xl font-bold text-zinc-600">Server IP</span>
                     <span className="text-5xl sm:text-6xl font-extrabold text-black tracking-tight font-mono">
-                        api.fsie-kiel.de{status.port && status.port !== 25565 ? `:${status.port}` : ''}
+                        minecraft.fsie-kiel.de{status.port && status.port !== 25565 ? `:${status.port}` : ''}
                     </span>
                 </div>
 
