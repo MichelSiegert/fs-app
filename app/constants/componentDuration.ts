@@ -10,5 +10,5 @@ export const COMPONENT_DURATIONS: Record<string, number> = {
   rot: 30 * 1000,
   lamp: 15 * 1000,
   modtierlist: 20 * 1000,
-  questions: 30 * 1000
+  questions: 45 * 1000
 };
