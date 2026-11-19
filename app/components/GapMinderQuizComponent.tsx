@@ -18,8 +18,8 @@ export interface GapminderQuestion {
   explanation?: string;
 }
 
-const WAIT_SECONDS = 20;
-const REVEAL_DURATION_SECONDS = 12; 
+const WAIT_SECONDS = 25;
+const REVEAL_DURATION_SECONDS = 10; 
 
 function parseCSV(csvText: string): Record<string, string>[] {
   const rows: string[][] = [];
