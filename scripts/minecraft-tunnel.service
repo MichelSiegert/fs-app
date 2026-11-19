@@ -1,0 +1,20 @@
+[Unit]
+Description=Minecraft SSH Reverse Tunnel
+After=network-online.target minecraft.service
+Wants=network-online.target
+Requires=minecraft.service
+
+[Service]
+User=fsie
+Group=fsie
+ExecStart=/usr/bin/ssh -N -T \
+  -o ExitOnForwardFailure=yes \
+  -o ServerAliveInterval=30 \
+  -o ServerAliveCountMax=3 \
+  -o StrictHostKeyChecking=accept-new \
+  -R *:25565:[::1]:25565 fs-iue@stupa-haw-kiel.de
+Restart=always
+RestartSec=10
+
+[Install]
+WantedBy=multi-user.target
