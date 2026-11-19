@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { Users, Wifi, WifiOff, KeyRound } from 'lucide-react';
+import { Users, Wifi, WifiOff, Skull } from 'lucide-react';
 import { MinecraftData } from '../types/minecraft';
 
 export default function MinecraftComponent() {
@@ -41,7 +41,7 @@ export default function MinecraftComponent() {
     }, [serverAddress]);
 
     return (
-        <div className="w-full max-w-4xl min-w-4xl   mx-auto space-y-6 content-center animate-spin [animation-duration:4000s]">
+        <div className="w-full max-w-4xl min-w-4xl mx-auto space-y-6 content-center animate-spin [animation-duration:4000s]">
             <div className={`mx-5 w-full rounded-3xl border-2 p-6 sm:p-8 flex items-center justify-between transition-all ${
                 status.online 
                     ? 'text-green-500 border-green-600' 
@@ -91,26 +91,28 @@ export default function MinecraftComponent() {
                 </div>
             </div>
 
-            <div className="bg-white border-2 w-full border-zinc-200 rounded-3xl p-8 mx-5">
+            <div className="bg-white border-2 w-full border-zinc-200 rounded-3xl p-8 mx-5 space-y-6">
                 <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b-2 border-zinc-100 pb-6">
                     <span className="text-3xl font-bold text-zinc-600">Server IP</span>
                     <span className="text-5xl sm:text-6xl font-extrabold text-black tracking-tight font-mono">
-                        {status.ip}{status.port && status.port !== 25565 ? `:${status.port}` : ''}
+                        api.fsie-kiel.de{status.port && status.port !== 25565 ? `:${status.port}` : ''}
                     </span>
                 </div>
 
-                <div className="space-y-4 pt-2">
-                    <div className="text-2xl text-zinc-600 font-medium leading-relaxed">
-                        Server ist im IOT-NAT (fürs erste, ich arbeite dran das ins eduroam zu bringen!).
-                    </div>
-                    <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 bg-zinc-50 border-2 border-gray-200 p-6 rounded-2xl">
-                        <div className="flex items-center gap-4 text-zinc-700 text-2xl font-semibold">
-                            <KeyRound className="w-9 h-9 text-gray-600 shrink-0" />
-                            <span>IOT-NAT Passwort:</span>
+                <div className="flex items-start justify-between gap-6 pt-2">
+                    <div className="space-y-2">
+                        <div className="flex flex-wrap items-center gap-3">
+                            <span className="text-2xl font-bold text-zinc-800">
+                                Schwierigkeit: Hard
+                            </span>
+                            <span className="text-zinc-300 text-2xl">•</span>
+                            <span className="text-2xl font-bold text-rose-600 font-mono">
+                                keepInventory: false
+                            </span>
                         </div>
-                        <span className="text-3xl font-mono font-bold bg-gray-100 text-gray-900 px-6 py-3 rounded-xl border border-gray-300">
-                            !FH-NAT-001!
-                        </span>
+                        <p className="text-xl text-zinc-500 leading-relaxed">
+                            keepInventory ist deaktiviert. Wie Bennett Foddy schon sagte: &quot;Don&apos;t worry, I&apos;ll save your progress, always. Even your mistakes.&quot;
+                        </p>
                     </div>
                 </div>
             </div>
