@@ -41,7 +41,7 @@ export default function MinecraftComponent() {
     }, [serverAddress]);
 
     return (
-        <div className="w-full max-w-4xl min-w-4xl mx-auto space-y-6 content-center animate-spin [animation-duration:4000s]">
+        <div className=" mx-12 w-full space-y-6 content-center animate-spin [animation-duration:6000s]">
             <div className={`mx-5 w-full rounded-3xl border-2 p-6 sm:p-8 flex items-center justify-between transition-all ${
                 status.online 
                     ? 'text-green-500 border-green-600' 
@@ -94,7 +94,7 @@ export default function MinecraftComponent() {
             <div className="bg-white border-2 w-full border-zinc-200 rounded-3xl p-8 mx-5 space-y-6">
                 <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b-2 border-zinc-100 pb-6">
                     <span className="text-3xl font-bold text-zinc-600">Server IP</span>
-                    <span className="text-5xl sm:text-6xl font-extrabold text-black tracking-tight font-mono">
+                    <span className="text-3xl sm:text-6xl text-black tracking-tight font-mono">
                         minecraft.fsie-kiel.de{status.port && status.port !== 25565 ? `:${status.port}` : ''}
                     </span>
                 </div>
@@ -110,7 +110,7 @@ export default function MinecraftComponent() {
                                 keepInventory: false
                             </span>
                         </div>
-                        <p className="text-xl text-zinc-500 leading-relaxed">
+                        <p className="text-3xl text-zinc-600 leading-relaxed">
                             keepInventory ist deaktiviert. Wie Bennett Foddy schon sagte: &quot;Don&apos;t worry, I&apos;ll save your progress, always. Even your mistakes.&quot;
                         </p>
                     </div>
