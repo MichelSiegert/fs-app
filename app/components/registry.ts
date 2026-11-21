@@ -5,6 +5,7 @@ import CoffeeComponent from './CoffeeComponent';
 import { MensaComponent } from './MensaComponent';
 import { BusComponent } from './BusComponent';
 import { ROLLED_POOLS, RolledPool } from '../constants/rolledPools';
+import { FachschaftsHelferComponent } from './HelfendenComponent';
 
 export interface DashboardComponentConfig {
     id: string;
