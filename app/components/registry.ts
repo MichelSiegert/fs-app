@@ -5,7 +5,6 @@ import CoffeeComponent from './CoffeeComponent';
 import { MensaComponent } from './MensaComponent';
 import { BusComponent } from './BusComponent';
 import { ROLLED_POOLS, RolledPool } from '../constants/rolledPools';
-import { FachschaftsHelferComponent } from './HelfendenComponent';
 
 export interface DashboardComponentConfig {
     id: string;
@@ -60,14 +59,14 @@ const busSchedule = (now: Date) => true;
 
 export const DASHBOARD_COMPONENTS: DashboardComponentConfig[] = [
     {
-        id: 'recreational',
-        name: 'Recreational',
-        pool: ROLLED_POOLS.recreational,
-    },
-    {
         id: 'uni',
         name: 'Uni',
         pool: ROLLED_POOLS.uni,
+    },
+    {
+        id: 'recreational',
+        name: 'Recreational',
+        pool: ROLLED_POOLS.recreational,
     },
     {
         id: 'coffee',
