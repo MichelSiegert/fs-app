@@ -1,8 +1,7 @@
 import { DailyChessPuzzleComponent } from "../components/ChessComponent";
 import { GapminderQuizComponent } from "../components/GapMinderQuizComponent";
-import { LampComponent } from "../components/LampComponent";
 import MinecraftComponent from "../components/MinecraftComponent";
-import BrainrotComponent from "../components/SubwaySurfer/BrainrotComponent";
+import BrainrotComponent from "../components/BrainRotComponent/BrainrotComponent";
 import InfModulTierList from "../components/Tierlist/InfModules";
 
 export const RECREATIONAL_ITEMS = [
@@ -11,5 +10,4 @@ export const RECREATIONAL_ITEMS = [
   { id: 'rot', name: 'Brainrot', component: BrainrotComponent },
   { id: 'modtierlist', name: 'mod Tierlist', component: InfModulTierList},
   { id: 'questions', name: 'questionaire', component: GapminderQuizComponent,},
-  { id: 'lamp', name: 'lamp', component: LampComponent},
 ];

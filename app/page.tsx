@@ -6,18 +6,20 @@ import { useDashboardRotation } from "./hooks/useDashboardRotation.";
 export default function Home() {
   const { priorityItem, rotatingItem, rotationInterval, progressKey } = useDashboardRotation(30000);
 
-  const PriorityComp = priorityItem.component;
-  const RotatingComp = rotatingItem.component;
+  const PriorityComp = priorityItem?.component;
+  const RotatingComp = rotatingItem?.component;
 
   return (
     <main className="min-h-screen max-h-screen overflow-y-hidden bg-zinc-50 text-zinc-900 flex flex-col md:flex-row divide-y md:divide-y-0 md:divide-x divide-zinc-200 overflow-hidden">
-      <section className="w-full md:w-1/2 max-h-full overflow-y-hidden p-6 flex flex-col items-center">
+      { PriorityComp && <section className="w-full md:w-1/2 max-h-full overflow-y-hidden p-6 flex flex-col items-center">
         <AnimatedCard componentKey={priorityItem.id}>
           <PriorityComp />
         </AnimatedCard>
       </section>
+      }
 
-      <section className="w-full md:w-1/2 flex flex-col items-center bg-white min-h-full relative">
+      {
+      RotatingComp && <section className="w-full md:w-1/2 flex flex-col items-center bg-white min-h-full relative">
         <AnimatedCard componentKey={rotatingItem.id}>
           <RotatingComp />
         </AnimatedCard>
@@ -32,6 +34,7 @@ export default function Home() {
           />
         </div>
       </section>
+      }
 
       <style jsx>{`
         @keyframes progressAnimation {

@@ -4,12 +4,13 @@ import React from 'react';
 import CoffeeComponent from './CoffeeComponent';
 import { MensaComponent } from './MensaComponent';
 import { BusComponent } from './BusComponent';
-import { AltklausurenComponent } from './AltklausurenComponent';
+import { ROLLED_POOLS, RolledPool } from '../constants/rolledPools';
 
 export interface DashboardComponentConfig {
     id: string;
     name: string;
-    component: React.ComponentType;
+    component?: React.ComponentType;
+    pool?: RolledPool;
     priorityReason?: (now: Date) => boolean;
     isVisible?: (now: Date) => boolean;
 }
@@ -51,7 +52,7 @@ const isMensaHours = (now: Date) => {
 
 const isMensaVisible = (now: Date) => {
     const mins = now.getHours() * 60 + now.getMinutes();
-    return mins < 14 * 60 + 20;
+    return mins < 14 * 60 + 20 && ![0,6].includes(now.getDay(   ));
 };
 
 const busSchedule = (now: Date) => true;
@@ -60,14 +61,19 @@ export const DASHBOARD_COMPONENTS: DashboardComponentConfig[] = [
     {
         id: 'recreational',
         name: 'Recreational',
-        component: CoffeeComponent,
+        pool: ROLLED_POOLS.recreational,
+    },
+    {
+        id: 'uni',
+        name: 'Uni',
+        pool: ROLLED_POOLS.uni,
     },
     {
         id: 'coffee',
         name: 'Coffee Status',
         component: CoffeeComponent,
         priorityReason: isNoCoffee,
-        isVisible: isCoffeeVisible
+        isVisible: isCoffeeVisible,
     },
     {
         id: 'mensa',
@@ -80,12 +86,6 @@ export const DASHBOARD_COMPONENTS: DashboardComponentConfig[] = [
         id: 'bus',
         name: 'Bus Schedule',
         component: BusComponent,
-        priorityReason: busSchedule
-    },
-        { 
-        id: 'klausuren',
-        name: 'Altklausuren',
-        component: AltklausurenComponent
-    },
-
+        priorityReason: busSchedule,
+    }
 ];
