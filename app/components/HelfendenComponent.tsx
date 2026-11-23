@@ -14,7 +14,7 @@ export function HelfendenComponent() {
                 <div className="relative space-y-4 max-w-4xl">
                     <div className="inline-block rounded-full bg-linear-to-r from-pink-500 via-fuchsia-500 to-rose-500 p-0.5 shadow-[0_0_30px_rgba(236,72,153,0.8)]">
                         <div className="rounded-full bg-fuchsia-950/90 px-6 py-1.5 backdrop-blur-md">
-                            <span className="bg-linear-to-r from-pink-200 via-white to-pink-200 bg-clip-text text-transparent font-extrabold text-sm sm:text-base tracking-widest uppercase">
+                            <span className="bg-linear-to-r from-pink-200 via-white to-pink-200 bg-clip-text text-transparent font-extrabold text-5xl tracking-widest uppercase">
                                 ★ ★ ★ ★ ★
                             </span>
                         </div>
