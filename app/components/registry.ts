@@ -59,7 +59,6 @@ const isMensaVisible = (now: Date) => {
 const busSchedule = (now: Date) => true;
 
 export const DASHBOARD_COMPONENTS: DashboardComponentConfig[] = [
-      { id: 'modtierlist', name: 'rankings', component: RankingComponent},
     {
         id: 'uni',
         name: 'Uni',
