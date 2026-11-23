@@ -19,7 +19,7 @@ export interface GapminderQuestion {
   explanation?: string;
 }
 
-const WAIT_SECONDS = 5  ;
+const WAIT_SECONDS = 40  ;
 const REVEAL_DURATION_SECONDS = 10;
 
 function parseCSV(csvText: string): Record<string, string>[] {
