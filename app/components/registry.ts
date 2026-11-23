@@ -5,6 +5,7 @@ import CoffeeComponent from './CoffeeComponent';
 import { MensaComponent } from './MensaComponent';
 import { BusComponent } from './BusComponent';
 import { ROLLED_POOLS, RolledPool } from '../constants/rolledPools';
+import RankingComponent from './Tierlist/RankingComponent';
 
 export interface DashboardComponentConfig {
     id: string;
@@ -58,6 +59,7 @@ const isMensaVisible = (now: Date) => {
 const busSchedule = (now: Date) => true;
 
 export const DASHBOARD_COMPONENTS: DashboardComponentConfig[] = [
+      { id: 'modtierlist', name: 'rankings', component: RankingComponent},
     {
         id: 'uni',
         name: 'Uni',

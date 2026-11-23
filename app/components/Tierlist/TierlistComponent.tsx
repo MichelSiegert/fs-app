@@ -1,31 +1,9 @@
 /* eslint-disable @next/next/no-img-element */
 'use client';
 
-import React from 'react';
+import { TierData } from '@/app/types/Tierdata';
+import { TIER_STYLES } from '@/app/types/TierStyles';
 
-export interface TierItem {
-    id: string;
-    label: string;
-    sublabel?: string;
-    image?: string;
-}
-
-export type TierData = Record<'S' | 'A' | 'B' | 'C' | 'D' | 'F', TierItem[]>;
-
-interface TierConfig {
-    id: keyof TierData;
-    name: string;
-    bgHeader: string;
-}
-
-const TIER_STYLES: TierConfig[] = [
-    { id: 'S', name: 'S', bgHeader: 'bg-red-500 text-white' },
-    { id: 'A', name: 'A', bgHeader: 'bg-orange-500 text-white' },
-    { id: 'B', name: 'B', bgHeader: 'bg-amber-500 text-white' },
-    { id: 'C', name: 'C', bgHeader: 'bg-yellow-500 text-black' },
-    { id: 'D', name: 'D', bgHeader: 'bg-emerald-500 text-white' },
-    { id: 'F', name: 'F', bgHeader: 'bg-blue-500 text-white' },
-];
 
 interface StaticTierListProps {
     data: TierData;
@@ -61,7 +39,7 @@ export function TierListComponent({ data, title }: StaticTierListProps) {
                                 {items.length > 0 ? (
                                     items.map((item) => (
                                         <div
-                                            key={item.id}
+                                            key={item.label}
                                             className="bg-zinc-700/80 hover:bg-zinc-700 border border-zinc-600/80 px-3 py-2 rounded-xl flex items-center gap-3 transition shadow-sm"
                                         >
                                             {item.image && (
@@ -76,11 +54,6 @@ export function TierListComponent({ data, title }: StaticTierListProps) {
                                                 <span className="text-3xl font-semibold text-zinc-100 leading-tight">
                                                     {item.label}
                                                 </span>
-                                                {item.sublabel && (
-                                                    <span className="text-zinc-400 font-medium">
-                                                        {item.sublabel}
-                                                    </span>
-                                                )}
                                             </div>
                                             )}
                                         </div>
