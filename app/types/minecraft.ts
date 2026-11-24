@@ -6,5 +6,6 @@ export interface MinecraftData {
     players?: {
         online: number;
         max: number;
+        playerList : string[];
     };
 }

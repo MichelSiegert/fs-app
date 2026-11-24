@@ -6,6 +6,7 @@ import { MensaComponent } from './MensaComponent';
 import { BusComponent } from './BusComponent';
 import { ROLLED_POOLS, RolledPool } from '../constants/rolledPools';
 import RankingComponent from './Tierlist/RankingComponent';
+import MinecraftComponent from './MinecraftComponent';
 
 export interface DashboardComponentConfig {
     id: string;
@@ -59,6 +60,7 @@ const isMensaVisible = (now: Date) => {
 const busSchedule = (now: Date) => true;
 
 export const DASHBOARD_COMPONENTS: DashboardComponentConfig[] = [
+     { id: 'minecraft', name: 'Minecraft', component: MinecraftComponent },
     {
         id: 'uni',
         name: 'Uni',
