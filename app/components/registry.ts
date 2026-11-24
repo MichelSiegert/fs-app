@@ -60,7 +60,6 @@ const isMensaVisible = (now: Date) => {
 const busSchedule = (now: Date) => true;
 
 export const DASHBOARD_COMPONENTS: DashboardComponentConfig[] = [
-     { id: 'minecraft', name: 'Minecraft', component: MinecraftComponent },
     {
         id: 'uni',
         name: 'Uni',
