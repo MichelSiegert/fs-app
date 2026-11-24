@@ -1,12 +1,13 @@
+/* eslint-disable @next/next/no-img-element */
 'use client';
 
 import { useEffect, useState } from 'react';
-import { Users, Wifi, WifiOff } from 'lucide-react';
+import { Wifi, WifiOff } from 'lucide-react';
 import { MinecraftData } from '../types/minecraft';
 
 
 function getSkinHeadFromUsername(playerName: string){
-    var url = "https://mineskin.eu/avatar/"+ playerName + "/128.png";
+    const url = "https://mineskin.eu/avatar/"+ playerName + "/128.png";
     return url;
 }
 
@@ -93,12 +94,12 @@ export default function MinecraftComponent() {
     return (
  
         <div className="bg-[url(/dirt_bg.png)] bg-repeat w-full space-y-6 content-center justify-items-center">
-            <div className={`bg-white max-w-6xl font-mc mx-12 rounded-3xl border-2 p-6 sm:p-8 flex self-center items-center justify-between transition-all ${
+            <div className={`bg-white max-w-6xl w-full font-mc rounded-3xl border-2 p-6 sm:p-8 flex self-center items-center justify-between transition-all ${
                 status.online 
                     ? 'text-green-500 border-green-600' 
                     : 'text-rose-500 border-rose-600'
             }`}>
-            <div className="flex items-center gap-6 ">
+            <div className="flex items-center gap-6 w-full">
                     <div className="p-4 bg-white/20 rounded-2xl">
                         {status.online ? (
                             <Wifi className="w-14 h-14" />
@@ -127,7 +128,7 @@ export default function MinecraftComponent() {
                 </div>
             </div>
 
-            <div className=" justify-items-center text-center bg-white border-2 w-full border-zinc-200 rounded-3xl p-8  mx-12 space-y-6 max-w-6xl">
+            <div className=" justify-items-center text-center bg-white border-2  border-zinc-200 rounded-3xl p-8 space-y-6 max-w-6xl">
                 
                 <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b-2 border-zinc-100 pb-6">
                     <span className="text-3xl font-bold text-zinc-600">Server Adresse:</span>
@@ -155,8 +156,8 @@ export default function MinecraftComponent() {
                 </div>
             </div>
 
-            <div className="mx-12 justify-between w-6xl justify-items-center  ">
-                <div className="bg-white border-2 border-gray-200 rounded-3xl p-6 flex items-center justify-between font-mc  ">
+            <div className=" justify-between max-w-6xl w-full justify-items-center  ">
+                <div className="bg-white border-2 border-gray-200 rounded-3xl p-6 flex items-center justify-between font-mc w-full ">
                     <div className='w-full'>
                         <div className="text-5xl font-bold text-gray-900">
 
