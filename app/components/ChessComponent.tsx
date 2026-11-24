@@ -47,7 +47,7 @@ export function DailyChessPuzzleComponent() {
         : '';
 
     return (
-        <div className="w-full text-center space-y-6 justify-center content-center mx-auto" style={{ height: 'stretch' }}>
+        <div className="w-full space-y-6 text-center justify-center content-center mx-auto" style={{ height: 'stretch' }}>
             {loading && (
                 <div className="w-full p-16 flex flex-col items-center justify-center text-zinc-400 gap-4">
                     <RefreshCw className="w-10 h-10 animate-spin text-amber-600" />

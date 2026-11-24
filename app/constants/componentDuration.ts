@@ -2,7 +2,7 @@
 
 export const COMPONENT_DURATIONS: Record<string, number> = {
   chess: 45 * 1000,
-  minecraft: 150000 * 1000,
+  minecraft: 15 * 1000,
   klausuren: 15 * 1000,
   coffee: 15 * 1000,
   mensa: 30 * 1000,

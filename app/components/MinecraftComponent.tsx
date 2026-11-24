@@ -91,14 +91,14 @@ export default function MinecraftComponent() {
 
 
     return (
-        //<div className=" mx-12 w-full space-y-6 content-center animate-spin [animation-duration:6000s]">
-        <div className=" mx-12 w-full space-y-6 content-center bg-[url(/dirt_bg.png)] bg-repeat">
-            <div className={`bg-white font-mc mx-5 w-full rounded-3xl border-2 p-6 sm:p-8 flex items-center justify-between transition-all ${
+ 
+        <div className="bg-[url(/dirt_bg.png)] bg-repeat w-full space-y-6 content-center justify-items-center">
+            <div className={`bg-white max-w-6xl font-mc mx-17 rounded-3xl border-2 p-6 sm:p-8 flex self-center items-center justify-between transition-all ${
                 status.online 
                     ? 'text-green-500 border-green-600' 
                     : 'text-rose-500 border-rose-600'
             }`}>
-                <div className="flex items-center gap-6 ">
+            <div className="flex items-center gap-6 ">
                     <div className="p-4 bg-white/20 rounded-2xl">
                         {status.online ? (
                             <Wifi className="w-14 h-14" />
@@ -110,7 +110,7 @@ export default function MinecraftComponent() {
                         <div className="text-2xl font-semibold opacity-90 uppercase tracking-wider">
                             Minecraft Server
                         </div>
-                        <div className="text-6xl sm:text-7xl font-black">
+                        <div className="text-6xl sm:text-6xl font-black">
                             {loading 
                                 ? 'Prüfe...' 
                                 : status.online 
@@ -127,9 +127,10 @@ export default function MinecraftComponent() {
                 </div>
             </div>
 
-            <div className="bg-white border-2 w-full border-zinc-200 rounded-3xl p-8 mx-5 space-y-6">
+            <div className="text-center bg-white border-2 w-full border-zinc-200 rounded-3xl p-8  mx-17 space-y-6 max-w-6xl">
+                
                 <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b-2 border-zinc-100 pb-6">
-                    <span className="text-3xl font-bold text-zinc-600">Server IP</span>
+                    <span className="text-3xl font-bold text-zinc-600">Server Adresse:</span>
                     <span className="text-3xl sm:text-6xl text-black tracking-tight">
                         minecraft.fsie-kiel.de{status.port && status.port !== 25565 ? `:${status.port}` : ''}
                     </span>
@@ -154,7 +155,7 @@ export default function MinecraftComponent() {
                 </div>
             </div>
 
-            <div className="w-full mx-5">
+            <div className="w-full mx-17 justify-between max-w-6xl ">
                 <div className="bg-white border-2 border-gray-200 rounded-3xl p-6 flex items-center justify-between font-mc  ">
                     <div className='w-full'>
                         <div className="text-5xl font-bold text-gray-900">
@@ -180,5 +181,6 @@ export default function MinecraftComponent() {
                 </div>
             </div>
         </div>
+
     );
 }
