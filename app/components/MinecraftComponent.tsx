@@ -94,7 +94,7 @@ export default function MinecraftComponent() {
     return (
  
         <div className="bg-[url(/dirt_bg.png)] bg-repeat w-full content-center justify-items-center">
-            <div className='w-full max-w-6xl justify-items-center mx-5 grid gap-5 content-around '>
+            <div className='w-full max-w-6xl justify-items-center px-5 grid gap-5 content-around '>
                 <div className={`bg-white max-w-6xl w-full font-mc rounded-3xl border-2 p-8 flex self-center items-center justify-between transition-all ${
                     status.online 
                         ? 'text-green-500 border-green-600' 
